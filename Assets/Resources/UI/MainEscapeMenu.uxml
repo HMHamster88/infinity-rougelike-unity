@@ -1,0 +1,15 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=b832f27bbfd94704992d5a61b25eef9c&amp;type=3#CommonStyles" />
+    <engine:VisualElement class="border-panel" style="flex-grow: 1;">
+        <BindableButton name="ReturnButton" on-click-data-source-method-name="ReturnToGame">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f865ed251b5620948bc5ceaa45ec2283" entry="Id(8732210174754816)" />
+            </Bindings>
+        </BindableButton>
+        <BindableButton name="ExitButton" on-click-data-source-method-name="ExitGame">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f865ed251b5620948bc5ceaa45ec2283" entry="Id(8731786457776128)" />
+            </Bindings>
+        </BindableButton>
+    </engine:VisualElement>
+</engine:UXML>

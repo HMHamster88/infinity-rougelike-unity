@@ -1,0 +1,14 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="ItemSlotView" src="project://database/Assets/Resources/UI/ItemSlotView.uxml?fileID=9197481963319205126&amp;guid=cda654cd4fd198b4eba1f5df1533c916&amp;type=3#ItemSlotView" />
+    <engine:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/UI/WarrioirShape.png?fileID=-8966630215804869559&amp;guid=ac3ac8fc24929574687c7baf881d3b08&amp;type=3#WarrioirShape_0&apos;); width: 193px; height: 305px; position: absolute; margin-top: 6px; margin-right: 6px; margin-bottom: 6px; margin-left: 6px;">
+        <engine:Instance template="ItemSlotView" data-source-path="Amulet" style="flex-grow: 0; width: auto; position: absolute; top: 46px; left: 151px;" />
+        <engine:Instance template="ItemSlotView" data-source-path="RightHand" style="flex-grow: 0; width: auto; position: absolute; top: 178px; left: -5px;" />
+        <engine:Instance template="ItemSlotView" data-source-path="LeftHand" style="flex-grow: 0; width: auto; position: absolute; top: 180px; left: 157px;" />
+        <engine:Instance template="ItemSlotView" data-source-path="Chest" style="flex-grow: 0; width: auto; position: absolute; top: 113px; left: 79px;" />
+        <engine:Instance template="ItemSlotView" data-source-path="Head" style="flex-grow: 0; width: auto; position: absolute; top: 0; left: 78px;" />
+        <engine:Instance template="ItemSlotView" data-source-path="Legs" style="flex-grow: 0; width: auto; position: absolute; top: 266px; left: 30px;" />
+        <engine:Instance template="ItemSlotView" data-source-path="LeftRing" style="flex-grow: 0; width: auto; position: absolute; top: 180px; left: 118px;" />
+        <engine:Instance template="ItemSlotView" data-source-path="RightRing" style="flex-grow: 0; width: auto; position: absolute; top: 178px; left: 35px;" />
+        <engine:Instance template="ItemSlotView" data-source-path="Gloves" style="flex-grow: 0; width: auto; position: absolute; top: 219px; left: -5px;" />
+    </engine:VisualElement>
+</engine:UXML>

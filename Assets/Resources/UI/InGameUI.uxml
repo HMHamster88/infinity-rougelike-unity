@@ -1,0 +1,58 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="ObjectDescription" src="project://database/Assets/Resources/UI/ObjectDescription.uxml?fileID=9197481963319205126&amp;guid=84c0df6cc8a0bc04698c976bc9d11fc3&amp;type=3#ObjectDescription" />
+    <engine:Template name="ContainerView" src="project://database/Assets/Resources/UI/ContainerView.uxml?fileID=9197481963319205126&amp;guid=5e2355bca9dd8824586276200059644b&amp;type=3#ContainerView" />
+    <engine:Template name="EquipmentView" src="project://database/Assets/Resources/UI/EquipmentView.uxml?fileID=9197481963319205126&amp;guid=a9b8de33c295a7541bedab15e8d838da&amp;type=3#EquipmentView" />
+    <engine:Template name="BagView" src="project://database/Assets/Resources/UI/BagView.uxml?fileID=9197481963319205126&amp;guid=5594f24f24d55494e810a07b8b86c8db&amp;type=3#BagView" />
+    <engine:Template name="ItemView" src="project://database/Assets/Resources/UI/ItemView.uxml?fileID=9197481963319205126&amp;guid=6857d8daa33e4454893f4b2f77733b11&amp;type=3#ItemView" />
+    <engine:Template name="ItemDescriptionView" src="project://database/Assets/Resources/UI/ItemDescriptionView.uxml?fileID=9197481963319205126&amp;guid=e441810863bbe994db3d82a9b756fe1d&amp;type=3#ItemDescriptionView" />
+    <engine:Template name="MainEscapeMenu" src="project://database/Assets/Resources/UI/MainEscapeMenu.uxml?fileID=9197481963319205126&amp;guid=f6ffca88d7921734cad15121c12beb1d&amp;type=3#MainEscapeMenu" />
+    <Style src="project://database/Assets/Resources/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=b832f27bbfd94704992d5a61b25eef9c&amp;type=3#CommonStyles" />
+    <engine:VisualElement name="MainUIElement" style="flex-grow: 1; cursor: url(&apos;project://database/Assets/Sprites/UI/cursor.png?fileID=2800000&amp;guid=3201f92a637100e4ab124256de685d1e&amp;type=3#cursor&apos;);">
+        <engine:VisualElement name="Header" style="flex-grow: 0; flex-direction: row; justify-content: space-between; align-self: auto;">
+            <engine:Instance template="ObjectDescription" enabled="true" name="ObjectDescription" style="align-self: center;">
+                <Bindings>
+                    <UnityEngine.UIElements.DataBinding property="style.visibility" data-source-path="ShowAtCursorObjectBar" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                </Bindings>
+            </engine:Instance>
+            <engine:VisualElement name="Spacer" style="flex-grow: 1;" />
+            <engine:ProgressBar value="22" name="PlayerHealthProgressBar" title="100/100" style="width: 128px;">
+                <Bindings>
+                    <engine:DataBinding property="title" data-source-path="playerHealth.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" update-trigger="EveryUpdate" />
+                    <engine:DataBinding property="value" data-source-path="playerHealth.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                    <engine:DataBinding property="highValue" data-source-path="playerHealth.MaxValue" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                </Bindings>
+            </engine:ProgressBar>
+        </engine:VisualElement>
+        <engine:VisualElement name="Center" style="flex-grow: 1; flex-direction: row;">
+            <engine:VisualElement enabled="true" name="LeftPanel" style="width: 50%;">
+                <engine:Instance template="ContainerView" name="ContainerView" enabled="true" style="flex-grow: 1; display: none;">
+                    <Bindings>
+                        <UnityEngine.UIElements.DataBinding property="style.display" data-source-path="ContainerWindowVisibility.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                    </Bindings>
+                </engine:Instance>
+            </engine:VisualElement>
+            <engine:VisualElement name="RightPanel" style="width: 50%;">
+                <engine:VisualElement name="CharacterView" class="border-panel" style="flex-grow: 1; display: none;">
+                    <engine:Instance template="EquipmentView" name="EquipmentView" data-source-path="playerEquipment" style="align-self: auto; align-items: center; flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                    <engine:Instance template="BagView" data-source-path="playerItemsBag" style="flex-grow: 0;" />
+                    <Bindings>
+                        <engine:DataBinding property="style.display" data-source-path="CharacterWindowVisibility.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                    </Bindings>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="Footer" style="flex-grow: 0;" />
+    </engine:VisualElement>
+    <engine:Instance template="ItemView" name="DragAndDropItem" style="position: absolute; display: none;" />
+    <engine:Instance template="ItemDescriptionView" name="ItemDescriptionView" enabled="true" style="position: absolute; display: none;">
+        <Bindings>
+            <UnityEngine.UIElements.DataBinding property="style.display" data-source-path="ItemDescriptionViewVisibility" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+        </Bindings>
+    </engine:Instance>
+    <engine:VisualElement name="EscapeMenuContainer" style="flex-grow: 1; position: absolute; right: 0; bottom: 0; left: 0; top: 0; align-items: center; align-content: center; flex-direction: column; justify-content: center; background-color: rgba(0, 0, 0, 0.4); display: none;">
+        <engine:Instance template="MainEscapeMenu" />
+        <Bindings>
+            <engine:DataBinding property="style.display" data-source-path="EscapeWindowVisibility.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+        </Bindings>
+    </engine:VisualElement>
+</engine:UXML>

@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="ItemView" src="project://database/Assets/Resources/UI/ItemView.uxml?fileID=9197481963319205126&amp;guid=6857d8daa33e4454893f4b2f77733b11&amp;type=3#ItemView" />
+    <Style src="project://database/Assets/Resources/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=b832f27bbfd94704992d5a61b25eef9c&amp;type=3#CommonStyles" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/UI/Slot.png?fileID=8417420941954122440&amp;guid=a2e5261b6309e4d46b7be49247de2e9a&amp;type=3#Slot_0&apos;); -unity-slice-left: 3; -unity-slice-top: 3; -unity-slice-right: 3; -unity-slice-bottom: 3; margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 1px;">
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement name="BackgroundIcon" style="flex-grow: 1; position: absolute; top: 2px; left: 2px; bottom: 2px; right: 2px;">
+                <Bindings>
+                    <ui:DataBinding property="style.backgroundImage" data-source-path="BackgroundIcon" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:VisualElement>
+            <ui:VisualElement name="VisibilityContainer" style="flex-grow: 1;">
+                <ui:Instance template="ItemView" data-source-path="Item" style="position: relative;" />
+                <Bindings>
+                    <ui:DataBinding property="style.visibility" data-source-path="HasItem" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

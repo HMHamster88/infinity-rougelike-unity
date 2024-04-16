@@ -1,0 +1,187 @@
+.border-panel {
+    background-image: url('project://database/Assets/Sprites/UI/Border.png?fileID=4507162162781784842&guid=e970d2775b671d34986fc38fbde0bd33&type=3#Border_0');
+    -unity-slice-left: 7;
+    -unity-slice-top: 7;
+    -unity-slice-right: 7;
+    -unity-slice-bottom: 7;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+}
+
+.border-slot {
+    background-image: url('project://database/Assets/Sprites/UI/Slot.png?fileID=8417420941954122440&guid=a2e5261b6309e4d46b7be49247de2e9a&type=3#Slot_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+}
+
+Button {
+    background-image: url('project://database/Assets/Sprites/UI/Button.png?fileID=649223268058989734&guid=701fb40a6d71fed49a34ab9c56b2c834&type=3#Button_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+BindableButton {
+    background-image: url('project://database/Assets/Sprites/UI/Button.png?fileID=649223268058989734&guid=701fb40a6d71fed49a34ab9c56b2c834&type=3#Button_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+Button {
+    background-image: url('project://database/Assets/Sprites/UI/Button_0002.png?fileID=-6667886228355191865&guid=bb6ce983fd48cec4c9504baf0bdaf439&type=3#Button_0002_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+}
+
+BindableButton :hover {
+    background-image: url('project://database/Assets/Sprites/UI/Button_0002.png?fileID=-6667886228355191865&guid=bb6ce983fd48cec4c9504baf0bdaf439&type=3#Button_0002_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+}
+
+Button {
+    background-image: url('project://database/Assets/Sprites/UI/Button_0003.png?fileID=6356172236399405659&guid=de2c6ee0594fc704788087950ccfcc5a&type=3#Button_0003_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+}
+
+BindableButton :active {
+    background-image: url('project://database/Assets/Sprites/UI/Button_0003.png?fileID=6356172236399405659&guid=de2c6ee0594fc704788087950ccfcc5a&type=3#Button_0003_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+}
+
+.unity-progress-bar__background {
+    background-image: url('project://database/Assets/Sprites/UI/Slot.png?fileID=8417420941954122440&guid=a2e5261b6309e4d46b7be49247de2e9a&type=3#Slot_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    flex-grow: 1;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.unity-progress-bar__progress {
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(255, 0, 0);
+    background-image: url('project://database/Assets/Sprites/UI/Button.png?fileID=649223268058989734&guid=701fb40a6d71fed49a34ab9c56b2c834&type=3#Button_0');
+    -unity-slice-left: 3;
+    -unity-slice-top: 3;
+    -unity-slice-right: 3;
+    -unity-slice-bottom: 3;
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.unity-progress-bar__title-container {
+    align-items: center;
+}
+
+:root {
+    -unity-font-definition: url('project://database/Assets/Resources/UI/Fonts/pixelcyr_normal.ttf?fileID=12800000&guid=83318eed35d3ee14081cc61e3f4eb7e2&type=3#pixelcyr_normal');
+    font-size: 10px;
+}
+
+.draggable {
+}
+
+.unity-label {
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.unity-progress-bar__container {
+    min-width: 0;
+    min-height: 0;
+}

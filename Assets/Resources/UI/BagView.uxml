@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="ItemSlotView" src="project://database/Assets/UI/ItemSlotView.uxml?fileID=9197481963319205126&amp;guid=cda654cd4fd198b4eba1f5df1533c916&amp;type=3#ItemSlotView" />
+    <engine:VisualElement class="border-slot" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap;">
+        <engine:ScrollView>
+            <GridView columms="4" rows="3" item-template="ItemSlotView" items-property-path="itemsSlots" style="flex-grow: 1; justify-content: space-evenly;">
+                <engine:Instance template="ItemSlotView" />
+            </GridView>
+        </engine:ScrollView>
+    </engine:VisualElement>
+</engine:UXML>

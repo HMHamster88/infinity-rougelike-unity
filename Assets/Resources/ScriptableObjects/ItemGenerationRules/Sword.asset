@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89500909a9154b54b85791f18274eeee, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:abefe01c2b23a3142939ca193dccd5bc
+    m_TableEntryReference:
+      m_KeyId: 18670026752
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sprite: {fileID: 8033092973025764044, guid: 563a28e4ed5605c4da39dbe3fee5782f, type: 3}
+  slotType: 1
+  itemProperties:
+  - chance: 1
+    rule:
+      rid: 1578213063821886118
+  - chance: 1
+    rule:
+      rid: 7220094980663017544
+  references:
+    version: 2
+    RefIds:
+    - rid: 1578213063821886118
+      type: {class: ItemDamagePropertyGenerationRule, ns: , asm: Assembly-CSharp}
+      data:
+        type: 0
+        MinDamage:
+          min:
+            baseValue: 1
+            linearFactor: 5
+            cubicFactor: 0
+          max:
+            baseValue: 1
+            linearFactor: 5
+            cubicFactor: 0
+        MaxDamage:
+          min:
+            baseValue: 5
+            linearFactor: 10
+            cubicFactor: 0
+          max:
+            baseValue: 5
+            linearFactor: 10
+            cubicFactor: 0
+    - rid: 7220094980663017544
+      type: {class: MelleWeaponPropertyGenerationRule, ns: , asm: Assembly-CSharp}
+      data:
+        AttacksPerSecond: 2
+        attackSounds:
+        - {fileID: 8300000, guid: 1660e0f31d9036e4d91f52d3fdc3e1bd, type: 3}
+        - {fileID: 8300000, guid: 6b24f43f8042f7546a8ca89a59df5dc3, type: 3}
+        - {fileID: 8300000, guid: a59c26785b2a0c34aafc9938052a46e2, type: 3}
+        - {fileID: 8300000, guid: f8edc2fa568743b48a2fd6b99c2941e5, type: 3}
+        - {fileID: 8300000, guid: a48e48a71b913b948961d20444d68ac2, type: 3}
+        - {fileID: 8300000, guid: e916812351992a24ab9e9eb875fa9f5c, type: 3}
+        Distance: 0.5
+        MaxDistance: 1
+        AttackAngleRange: 90
+        AttackTime: 0.2

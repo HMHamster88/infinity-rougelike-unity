@@ -1,0 +1,18 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="BagView" src="project://database/Assets/Resources/UI/BagView.uxml?fileID=9197481963319205126&amp;guid=5594f24f24d55494e810a07b8b86c8db&amp;type=3#BagView" />
+    <engine:VisualElement name="ContainerView" class="border-panel" style="flex-grow: 1; display: flex;">
+        <engine:Instance template="BagView" name="ContainerBagView" data-source-path="mapObjectContainer.ItemsBag" style="flex-grow: 1;" />
+        <engine:VisualElement style="flex-grow: 0; flex-direction: row-reverse;">
+            <BindableButton name="CloseContainerButton" text="Close" on-click-call-method-name="CloseContainerWindow" on-click-data-source-method-name="CloseContainerWindow">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:f865ed251b5620948bc5ceaa45ec2283" entry="Id(74152280064)" />
+                </Bindings>
+            </BindableButton>
+            <BindableButton name="GetAllContainerButton" text="Close" on-click-call-method-name="GetAllItems" on-click-data-source-method-name="GetAllItems">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:f865ed251b5620948bc5ceaa45ec2283" entry="Id(6945958970654720)" />
+                </Bindings>
+            </BindableButton>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

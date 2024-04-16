@@ -1,0 +1,12 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="ItemView" style="flex-grow: 1; background-image: none; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; width: 32px; height: 32px;">
+        <Bindings>
+            <engine:DataBinding property="style.backgroundImage" data-source-path="Sprite" data-source-type="ItemSlot, Assembly-CSharp" binding-mode="ToTarget" update-trigger="EveryUpdate" />
+        </Bindings>
+    </engine:VisualElement>
+    <engine:Label text="0" style="margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 3px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; position: absolute;">
+        <Bindings>
+            <engine:DataBinding property="text" data-source-path="Quantity" data-source-type="ItemSlot, Assembly-CSharp" binding-mode="ToTarget" />
+        </Bindings>
+    </engine:Label>
+</engine:UXML>

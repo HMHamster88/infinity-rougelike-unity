@@ -1,0 +1,18 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=b832f27bbfd94704992d5a61b25eef9c&amp;type=3#CommonStyles" />
+    <engine:VisualElement class="border-panel" style="flex-grow: 1; min-width: 100px;">
+        <engine:Label text="Label" style="align-self: center;">
+            <Bindings>
+                <engine:DataBinding property="text" data-source-path="AtCursorObjectName" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+            </Bindings>
+        </engine:Label>
+        <engine:ProgressBar value="22" title="100/100">
+            <Bindings>
+                <engine:DataBinding property="title" data-source-path="AtCursorObjectHealth" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                <engine:DataBinding property="value" data-source-path="AtCursorObjectHealth.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                <engine:DataBinding property="highValue" data-source-path="AtCursorObjectHealth.MaxValue" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                <engine:DataBinding property="style.display" data-source-path="ShowAtCursorObjectHealth" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+            </Bindings>
+        </engine:ProgressBar>
+    </engine:VisualElement>
+</engine:UXML>

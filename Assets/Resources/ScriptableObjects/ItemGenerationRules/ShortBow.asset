@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89500909a9154b54b85791f18274eeee, type: 3}
+  m_Name: ShortBow
+  m_EditorClassIdentifier: 
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:abefe01c2b23a3142939ca193dccd5bc
+    m_TableEntryReference:
+      m_KeyId: 6899922000543744
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  sprite: {fileID: 1258252838, guid: 563a28e4ed5605c4da39dbe3fee5782f, type: 3}
+  slotType: 1
+  itemProperties:
+  - chance: 1
+    rule:
+      rid: 1578213063821886118
+  - chance: 1
+    rule:
+      rid: 7220095073331183688
+  references:
+    version: 2
+    RefIds:
+    - rid: 1578213063821886118
+      type: {class: ItemDamagePropertyGenerationRule, ns: , asm: Assembly-CSharp}
+      data:
+        type: 0
+        MinDamage:
+          min:
+            baseValue: 1
+            linearFactor: 1
+            cubicFactor: 0
+          max:
+            baseValue: 1
+            linearFactor: 1
+            cubicFactor: 0
+        MaxDamage:
+          min:
+            baseValue: 3
+            linearFactor: 5
+            cubicFactor: 0
+          max:
+            baseValue: 3
+            linearFactor: 5
+            cubicFactor: 0
+    - rid: 7220095073331183688
+      type: {class: MissleWeaponPropertyGenerationRule, ns: , asm: Assembly-CSharp}
+      data:
+        AttacksPerSecond: 2
+        attackSounds:
+        - {fileID: 8300000, guid: bdb56d4d53d27b743ab50eda6725c7a5, type: 3}
+        - {fileID: 8300000, guid: 850841438f0a1fe4bacd08f9bc8770da, type: 3}
+        - {fileID: 8300000, guid: 0d8cec1416611de4db16c89549f2dfa7, type: 3}
+        - {fileID: 8300000, guid: b6fa5420424d4324699434b177f1acac, type: 3}
+        - {fileID: 8300000, guid: 1895442a5cbf45949b3bea533f21a2d3, type: 3}
+        Distance: 10
+        ProjectilePrefab: {fileID: 6101843159051497183, guid: 0f9c3e154fb94f34484dd7123457002a, type: 3}
+        ProjectileStartSpeed: 10
+        AttackAngleScatter: 5

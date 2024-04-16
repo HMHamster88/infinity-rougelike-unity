@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=b832f27bbfd94704992d5a61b25eef9c&amp;type=3#CommonStyles" />
+    <engine:VisualElement name="VisualElement" class="border-panel" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/UI/Tooltip.png?fileID=-516091054131125173&amp;guid=388c050121b78b84083a564aba6329ff&amp;type=3#Tooltip_0&apos;); -unity-slice-left: 3; -unity-slice-top: 3; -unity-slice-right: 3; -unity-slice-bottom: 3; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;">
+        <engine:Label text="Label" name="Label" style="-unity-text-align: upper-left;">
+            <Bindings>
+                <engine:DataBinding property="text" data-source-path="ItemDescriptionTooltip" binding-mode="ToTarget" />
+            </Bindings>
+        </engine:Label>
+    </engine:VisualElement>
+</engine:UXML>
