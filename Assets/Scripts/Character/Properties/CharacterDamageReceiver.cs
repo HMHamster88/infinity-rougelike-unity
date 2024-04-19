@@ -15,9 +15,12 @@ public class CharacterDamageReceiver : DamageReceiver
         if (corpsePrefab != null) 
         {
             var corpse = Instantiate(corpsePrefab, transform.position, Quaternion.identity, gameObject.transform.parent);
-            if (corpse.TryGetComponent<ItemsBag>(out var itemsBag) && TryGetComponent<Character>(out var character) && TryGetComponent<LootGenerator>(out var lootGenerator))
+            if (corpse.TryGetComponent<MapObjectContainer>(out var mapObjectContainer) && TryGetComponent<Character>(out var character) && TryGetComponent<LootGenerator>(out var lootGenerator))
             {
-                itemsBag.LayItems(lootGenerator.Generate(character.Level));
+                var corpseLootGenerator = corpse.AddComponent<LootGenerator>();
+                corpseLootGenerator.LootGenerationRule = lootGenerator.LootGenerationRule;
+                corpseLootGenerator.ItemGenerator = lootGenerator.ItemGenerator;
+                mapObjectContainer.Level = character.Level;
             }
         }
         Destroy(gameObject);

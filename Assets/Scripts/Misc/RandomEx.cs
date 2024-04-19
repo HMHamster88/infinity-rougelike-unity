@@ -20,6 +20,13 @@ public class RandomEx
         return Random.Range(0.0f, 1.0f) <= chance;
     }
 
+    public static T GetWeightChance<T>(IList<T> chances) where T : IChance
+    {
+        var totalChance = chances.Sum(chance => chance.Chance);
+        var random = Random.Range(0, totalChance);
+        return getChace(chances, totalChance);
+    }
+
     public static List<T> GetWeightChances<T>(IList<T> chances, int count) where T : IChance
     {
         var totalChance = chances.Sum(chance => chance.Chance);

@@ -13,10 +13,11 @@ public class MapObjectContainer : MonoBehaviour, IInteractableMapObject, INamed
     public Sprite openedSprite;
 
     public LocalizedString Name;
+    public int Level = 0;
 
     private SpriteRenderer spriteRenderer;
 
-    public Action<MapObjectContainer> beforeOpen;
+    private bool firstOpen = true;
 
     [DontCreateProperty]
     private bool isOpen = false;
@@ -46,14 +47,20 @@ public class MapObjectContainer : MonoBehaviour, IInteractableMapObject, INamed
 
     public void Open()
     {
-        if (beforeOpen != null)
-        {
-            beforeOpen(this);
-        }
+        beforeOpen();
         IsOpen = true;
         if (openSound != null)
         {
             AudioSource.PlayClipAtPoint(openSound, this.transform.position);
+        }
+    }
+
+    protected void beforeOpen()
+    {
+        if(firstOpen && TryGetComponent<LootGenerator>(out var lootGenerator))
+        {
+            ItemsBag.LayItems(lootGenerator.Generate(Level));
+            firstOpen = false;
         }
     }
 

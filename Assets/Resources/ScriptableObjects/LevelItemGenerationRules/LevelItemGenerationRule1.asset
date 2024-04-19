@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b60b9ef05b2ef49834bd55c8de1c92, type: 3}
   m_Name: LevelItemGenerationRule1
   m_EditorClassIdentifier: 
-  level: 1
+  level: 0
   dropChances:
-  - chance: 0.01
+  - chance: 0.5
+    rule: {fileID: 11400000, guid: 583e2857dc2adf34caae2b54fb631422, type: 2}
+  - chance: 0.05
     rule: {fileID: 11400000, guid: ca2647cc24ae26f4e8b08076ad638090, type: 2}
   - chance: 0.1
     rule: {fileID: 11400000, guid: 042f69974a38db445ac3dc1c342bc433, type: 2}
-  - chance: 0.3
-    rule: {fileID: 11400000, guid: 583e2857dc2adf34caae2b54fb631422, type: 2}
+  - chance: 0.05
+    rule: {fileID: 11400000, guid: f07ee134220ff8c4b8dd73e45ef4b861, type: 2}

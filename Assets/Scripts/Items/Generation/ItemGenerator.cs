@@ -37,15 +37,41 @@ public class ItemGenerator : MonoBehaviour
 
     public List<Item> GenerateItems100Chance(int level, int count)
     {
-        var allChances = levelItemGenerationRules
-            .Where(levelRule => levelRule.Level <= level)
-            .SelectMany(levelRule => levelRule.DropChances)
-            .ToList();
+        var allChances = getAllLevelItemChances(level).ToList();
         return RandomEx.GetWeightChances(allChances, count)
             .Select(chance => chance.Rule.Generate(level))
             .Select(itemObject => itemObject.GetComponent<Item>())
             .ToList();
     }
 
+    private IEnumerable<ItemDropChance> getAllLevelItemChances(int level)
+    {
+        return levelItemGenerationRules
+            .Where(levelRule => levelRule.Level <= level)
+            .SelectMany(levelRule => levelRule.DropChances)
+            .ToList();
+    }
+
+    public List<Item> GenerateItems(int level, LootGenerationRule lootGenerationRule)
+    {
+        var allChances = getAllLevelItemChances(level)
+            .Concat(lootGenerationRule.SpecialItems)
+            .ToList();
+        var itemsCount = lootGenerationRule.ItemsCount.GetRandomInclusive(level);
+
+        var result = new List<Item>();
+        for(var attempt  = 0; attempt < itemsCount; attempt++)
+        {
+            if(allChances.Count == 0)
+            {
+                return result;
+            }
+            var chance = RandomEx.GetWeightChance(allChances);
+            var itemGameObject = chance.Rule.Generate(level);
+            result.Add(itemGameObject.GetComponent<Item>());
+            allChances.Remove(chance);
+        }
+        return result;
+    }
 
 }

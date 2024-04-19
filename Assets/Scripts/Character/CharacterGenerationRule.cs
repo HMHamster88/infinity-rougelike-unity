@@ -10,7 +10,7 @@ public class CharacterGenerationRule : ScriptableObject
     private IntLevelValue baseHealth = new();
 
     [SerializeField]
-    private IntLevelValue maxLootItemsCount = new();
+    public LootGenerationRule LootGenerationRule;
 
     [SerializeField]
     private EquipmentGenerationRule equipmentGenerationRule = new EquipmentGenerationRule();
@@ -34,7 +34,7 @@ public class CharacterGenerationRule : ScriptableObject
         if (character.TryGetComponent<LootGenerator>(out var lootGenerator))
         {
             lootGenerator.ItemGenerator = itemGenerator;
-            lootGenerator.MaxItemsCount = maxLootItemsCount.GetValue(level);
+            lootGenerator.LootGenerationRule = LootGenerationRule;
         }
         return character;
     }

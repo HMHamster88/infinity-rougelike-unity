@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be7ae7b4b8b67c489fdc1e49688349f, type: 3}
+  m_Name: StoneDungeonGeneratior
+  m_EditorClassIdentifier: 
+  MinimalLevel: 0
+  Width: 65
+  Height: 65
+  RoomTries: 100
+  RoomSize: 2
+  WindingPercent: 50
+  ExtraConnectorChance: 1
+  AddTestObjectsToFirstRoom: 0
+  WallTiles:
+  - {fileID: 11400000, guid: ad8b18e72187ebf4ba0ad5d58f2a0443, type: 2}
+  FloorTiles:
+  - {fileID: 11400000, guid: 63c45c0e47fbf81469b69ac1875a2a9e, type: 2}
+  - {fileID: 11400000, guid: c286e6c1ab205f444b340c6952134e11, type: 2}
+  ClosedDoorTile: {fileID: 11400000, guid: a15e4939cdfce074eb0fbb456b425735, type: 2}
+  containerGenerationChances:
+  - PerRoomChance: 1
+    LootGenerationRule:
+      ItemsCount:
+        min:
+          baseValue: 1
+          linearFactor: 0
+          cubicFactor: 0
+        max:
+          baseValue: 3
+          linearFactor: 0.1
+          cubicFactor: 0
+      SpecialItems: []
+    ContainerPrefab: {fileID: 5413027017238935028, guid: 36d0947c120e8b74399fa64d8724e088, type: 3}
+  characterGenerationChances:
+  - PerRoomChance: 0.2
+    ChraracterGenerationRule: {fileID: 11400000, guid: 09fadc529383b0d4a93b5a5eb66c2e91, type: 2}

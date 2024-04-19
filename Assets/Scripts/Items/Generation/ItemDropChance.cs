@@ -15,7 +15,7 @@ public class ItemDropChance : IChance
 
     public GameObject Generate(int level)
     {
-        if (UnityEngine.Random.Range(0, 1) <= chance)
+        if (UnityEngine.Random.Range(0, 1.0f) <= chance)
         {
             return rule.Generate(level);
         }

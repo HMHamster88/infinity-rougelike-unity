@@ -4,10 +4,10 @@ using UnityEngine;
 public class LootGenerator : MonoBehaviour
 {
     public ItemGenerator ItemGenerator;
-    public int MaxItemsCount = 1;
+    public LootGenerationRule LootGenerationRule;
 
     public List<Item> Generate(int level)
     {
-        return ItemGenerator.GenerateItems100Chance(level, Random.Range(0, MaxItemsCount + 1));
+        return ItemGenerator.GenerateItems(level, LootGenerationRule);
     }
 }

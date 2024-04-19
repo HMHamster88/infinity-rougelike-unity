@@ -17,6 +17,17 @@ MonoBehaviour:
     baseValue: 1
     linearFactor: 10
     cubicFactor: 2
+  LootGenerationRule:
+    ItemsCount:
+      min:
+        baseValue: 1
+        linearFactor: 0
+        cubicFactor: 0
+      max:
+        baseValue: 2
+        linearFactor: 0.1
+        cubicFactor: 0
+    SpecialItems: []
   equipmentGenerationRule:
     leftHand: {fileID: 0}
     rightHand: {fileID: 11400000, guid: ca2647cc24ae26f4e8b08076ad638090, type: 2}

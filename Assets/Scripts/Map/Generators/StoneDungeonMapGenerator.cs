@@ -5,35 +5,42 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[CreateAssetMenu(fileName = "StoneDungeonGeneratior", menuName = "Scriptable Objects/StoneDungeonGeneratior")]
 public class StoneDungeonMapGenerator : MapGenerator
 {
-    [RangeAttribute(0, 10000)]
+    [SerializeField]
+    [Range(0, 10000)]
     private int Width = 64 + 1;
-    [RangeAttribute(0, 10000)]
+    [SerializeField]
+    [Range(0, 10000)]
     private int Height = 64 + 1;
-    [RangeAttribute(0, 10000)]
+    [SerializeField]
+    [Range(0, 10000)]
     private int RoomTries = 100;
-    [RangeAttribute(1, 128)]
+    [SerializeField]
+    [Range(1, 128)]
     private int RoomSize = 2;
-    [RangeAttribute(0, 100)]
+    [SerializeField]
+    [Range(0, 100)]
     private int WindingPercent = 50;
-    [RangeAttribute(0, 100)]
+    [SerializeField]
+    [Range(0, 100)]
     private int ExtraConnectorChance = 1;
     [SerializeField]
     private bool AddTestObjectsToFirstRoom = false;
 
     [SerializeField]
-    private List<TileBase> WallTiles = new List<TileBase>();
+    private List<TileBase> WallTiles = new ();
     [SerializeField]
-    private List<TileBase> FloorTiles = new List<TileBase>();
+    private List<TileBase> FloorTiles = new ();
     [SerializeField]
     private Tile ClosedDoorTile = null;
 
     [SerializeField]
-    private ContainerGenerationSettings containerSettings = new ContainerGenerationSettings();
+    private List<ContainerGenerationChance> containerGenerationChances = new ();
 
     [SerializeField]
-    private List<CharacterGenerationChance> characterGenerationChances = new List<CharacterGenerationChance>();
+    private List<CharacterGenerationChance> characterGenerationChances = new ();
 
     bool[,] grid;
     int[,] regions;
@@ -108,7 +115,7 @@ public class StoneDungeonMapGenerator : MapGenerator
 
         if (AddTestObjectsToFirstRoom)
         {
-            addContainer(mapBehaviour, rooms[0], level);
+            addContainer(mapBehaviour, rooms[0], level, containerGenerationChances.First());
             addEnemy(mapBehaviour, rooms[0], level, characterGenerationChances[0].ChraracterGenerationRule);
         }
         
@@ -119,9 +126,11 @@ public class StoneDungeonMapGenerator : MapGenerator
     {
         foreach(var room in rooms.Skip(1))
         {
-            if (RandomEx.Chance(containerSettings.PerRoomChance))
-            {
-                addContainer(mapBehaviour, room, level);
+            foreach (var containerGenerationChance in containerGenerationChances) {
+                if (RandomEx.Chance(containerGenerationChance.PerRoomChance))
+                {
+                    addContainer(mapBehaviour, room, level, containerGenerationChance);
+                }
             }
             foreach (var charcterGenerationChance in characterGenerationChances)
             {
@@ -133,16 +142,16 @@ public class StoneDungeonMapGenerator : MapGenerator
         }
     }
     
-    private void addContainer(MapBehaviour mapBehaviour, RectInt room, int level)
+    private void addContainer(MapBehaviour mapBehaviour, RectInt room, int level, ContainerGenerationChance containerGenerationChance)
     {
-        var containerPerfab = containerSettings.ContainersPrefabs.GetRandomElement();
         var mapCoord = (Vector3Int) RandomEx.PointInRectInclusive(room.ExtendRect(-2));
         var worldCoords = mapBehaviour.floorTileMap.CellToWorld(mapCoord) + new Vector3(0.5f, 0.5f);
-        var container = Instantiate(containerPerfab, worldCoords, Quaternion.identity, mapBehaviour.mapObjects.transform);
-        var mapObjectContainer = container.GetComponent<MapObjectContainer>();
-        var itemsBag = mapObjectContainer.ItemsBag;
-        var newItems = mapBehaviour.itemGenerator.GenerateItems100Chance(level, containerSettings.ItemsCount);
-        itemsBag.LayItems(newItems);
+        var container = Instantiate(containerGenerationChance.ContainerPrefab, worldCoords, Quaternion.identity, mapBehaviour.mapObjects.transform);
+        var mapObjectContainer = container.gameObject.GetComponent<MapObjectContainer>();
+        mapObjectContainer.Level = level;
+        var lootGeneartor = container.AddComponent<LootGenerator>();
+        lootGeneartor.ItemGenerator = mapBehaviour.itemGenerator;
+        lootGeneartor.LootGenerationRule = containerGenerationChance.LootGenerationRule;
     }
 
     private void addEnemy(MapBehaviour mapBehaviour, RectInt room, int level, CharacterGenerationRule characterGenerationRule)
@@ -155,6 +164,9 @@ public class StoneDungeonMapGenerator : MapGenerator
         {
             characterComponent.Target = mapBehaviour.player;
         }
+        var lootGeneartor = enemy.AddComponent<LootGenerator>();
+        lootGeneartor.ItemGenerator = mapBehaviour.itemGenerator;
+        lootGeneartor.LootGenerationRule = characterGenerationRule.LootGenerationRule;
     }
 
     private void setTile(Vector2Int position, Tilemap tilemap, List<TileBase> tiles)
