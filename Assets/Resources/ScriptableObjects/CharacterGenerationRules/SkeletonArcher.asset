@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af21c86140fd374f893c1ac4dafd022, type: 3}
-  m_Name: Skeleton
+  m_Name: SkeletonArcher
   m_EditorClassIdentifier: 
-  basePrefab: {fileID: 6272243419060803299, guid: ea0c5890f38c55d4a972ee40b77e8dc4, type: 3}
+  aIProperties:
+    IdleWalkDistance: 2
+    ChaseDistance: 5
+    AttackDistance: 4
+  basePrefab: {fileID: 6272243419060803299, guid: 85ddc9587346a6246adbfca4a51201aa, type: 3}
   baseHealth:
-    baseValue: 1
+    baseValue: 10
     linearFactor: 10
     cubicFactor: 2
   LootGenerationRule:
@@ -30,7 +34,7 @@ MonoBehaviour:
     SpecialItems: []
   equipmentGenerationRule:
     leftHand: {fileID: 0}
-    rightHand: {fileID: 11400000, guid: ca2647cc24ae26f4e8b08076ad638090, type: 2}
+    rightHand: {fileID: 11400000, guid: f07ee134220ff8c4b8dd73e45ef4b861, type: 2}
     chest: {fileID: 0}
     head: {fileID: 0}
     legs: {fileID: 0}

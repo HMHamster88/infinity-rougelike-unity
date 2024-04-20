@@ -6,7 +6,7 @@ public class IdleState : AIState
     {
         var character = context.Character;
         var stateMachine = context.StateMachine;
-        if (character.Target != null && character.GetDistanceToTarget() < stateMachine.ChaseDistance)
+        if (character.Target != null && character.GetDistanceToTarget() < stateMachine.AIProperties.ChaseDistance)
         {
             stateMachine.setState(stateMachine.ChaseState);
             return;
@@ -14,7 +14,7 @@ public class IdleState : AIState
         
         if (context.Character.StoppedMovement)
         {
-            context.Character.MoveTo((Vector2)character.gameObject.transform.position + RandomEx.Vector2() * stateMachine.IdleWalkDistance);
+            context.Character.MoveTo((Vector2)character.gameObject.transform.position + RandomEx.Vector2() * stateMachine.AIProperties.IdleWalkDistance);
         }
         
     }

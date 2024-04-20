@@ -21,12 +21,12 @@ public class ChaseState: AIState
         if (character.Target != null)
         {
             var distanceToTarget = character.GetDistanceToTarget();
-            if (distanceToTarget > stateMachine.ChaseDistance) 
+            if (distanceToTarget > stateMachine.AIProperties.ChaseDistance) 
             {
                 stateMachine.setState(stateMachine.IdleState);
                 return;
             }
-            else if (distanceToTarget < stateMachine.AttackDistance)
+            else if (distanceToTarget < stateMachine.AIProperties.AttackDistance)
             {
                 stateMachine.setState(stateMachine.AttackState);
                 return;

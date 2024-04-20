@@ -4,6 +4,9 @@ using UnityEngine;
 public class CharacterGenerationRule : ScriptableObject
 {
     [SerializeField]
+    private AIProperties aIProperties = new();
+
+    [SerializeField]
     private GameObject basePrefab;
 
     [SerializeField]
@@ -35,6 +38,10 @@ public class CharacterGenerationRule : ScriptableObject
         {
             lootGenerator.ItemGenerator = itemGenerator;
             lootGenerator.LootGenerationRule = LootGenerationRule;
+        }
+        if (character.TryGetComponent<AIStateMachine>(out var aIStateMachine))
+        {
+            aIStateMachine.AIProperties = aIProperties;
         }
         return character;
     }

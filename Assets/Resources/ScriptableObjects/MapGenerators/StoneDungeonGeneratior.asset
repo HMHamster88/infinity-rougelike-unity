@@ -43,3 +43,5 @@ MonoBehaviour:
   characterGenerationChances:
   - PerRoomChance: 0.2
     ChraracterGenerationRule: {fileID: 11400000, guid: 09fadc529383b0d4a93b5a5eb66c2e91, type: 2}
+  - PerRoomChance: 0.2
+    ChraracterGenerationRule: {fileID: 11400000, guid: cb9163cb533f6794d8cb665be5581822, type: 2}

@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class AIStateMachine : InjectComponentBehaviour
 {
-    public float IdleWalkDistance = 2;
-    public float ChaseDistance = 5;
-    public float AttackDistance = 1.5f;
+    public AIProperties AIProperties;
 
     [GetComponent]
     private Character character;
