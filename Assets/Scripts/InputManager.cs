@@ -22,6 +22,10 @@ public class InputManager : MonoBehaviour
         {
             uiController.HideShowCharacterWindow();
         }
+        else if (Input.GetKeyDown(KeyCode.M))
+        {
+            uiController.HideShowMapWindow();
+        }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             uiController.Escape();

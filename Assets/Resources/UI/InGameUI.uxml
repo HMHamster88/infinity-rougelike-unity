@@ -8,8 +8,8 @@
     <engine:Template name="MainEscapeMenu" src="project://database/Assets/Resources/UI/MainEscapeMenu.uxml?fileID=9197481963319205126&amp;guid=f6ffca88d7921734cad15121c12beb1d&amp;type=3#MainEscapeMenu" />
     <Style src="project://database/Assets/Resources/UI/CommonStyles.uss?fileID=7433441132597879392&amp;guid=b832f27bbfd94704992d5a61b25eef9c&amp;type=3#CommonStyles" />
     <engine:VisualElement name="MainUIElement" style="flex-grow: 1; cursor: url(&apos;project://database/Assets/Sprites/UI/cursor.png?fileID=2800000&amp;guid=3201f92a637100e4ab124256de685d1e&amp;type=3#cursor&apos;);">
-        <engine:VisualElement name="Header" style="flex-grow: 0; flex-direction: row; justify-content: space-between; align-self: auto;">
-            <engine:Instance template="ObjectDescription" enabled="true" name="ObjectDescription" style="align-self: center;">
+        <engine:VisualElement name="Header" style="flex-grow: 0; flex-direction: row; justify-content: space-between; align-self: auto; align-items: flex-start;">
+            <engine:Instance template="ObjectDescription" enabled="true" name="ObjectDescription" style="align-self: flex-start; position: absolute;">
                 <Bindings>
                     <UnityEngine.UIElements.DataBinding property="style.visibility" data-source-path="ShowAtCursorObjectBar" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
                 </Bindings>
@@ -24,6 +24,13 @@
             </engine:ProgressBar>
         </engine:VisualElement>
         <engine:VisualElement name="Center" style="flex-grow: 1; flex-direction: row;">
+            <engine:VisualElement name="Minimap" class="border-panel" style="flex-grow: 0; position: absolute; right: 0;">
+                <engine:VisualElement name="MinimapTexture" style="flex-grow: 1; width: 64px; height: 64px;">
+                    <Bindings>
+                        <engine:DataBinding property="style.backgroundImage" data-source-path="minimap.texture" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                    </Bindings>
+                </engine:VisualElement>
+            </engine:VisualElement>
             <engine:VisualElement enabled="true" name="LeftPanel" style="width: 50%;">
                 <engine:Instance template="ContainerView" name="ContainerView" enabled="true" style="flex-grow: 1; display: none;">
                     <Bindings>
@@ -39,6 +46,18 @@
                         <engine:DataBinding property="style.display" data-source-path="CharacterWindowVisibility.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement name="MapPanel" class="border-panel" style="flex-grow: 1; position: absolute; right: 0; bottom: 0; left: 0; top: 0; display: none;">
+                <AspectRatioElement width="10" height="10" style="flex-grow: 1;">
+                    <engine:VisualElement name="MapTexture" style="flex-grow: 1;">
+                        <Bindings>
+                            <engine:DataBinding property="style.backgroundImage" data-source-path="minimap.allMapTexture" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                        </Bindings>
+                    </engine:VisualElement>
+                </AspectRatioElement>
+                <Bindings>
+                    <engine:DataBinding property="style.display" data-source-path="MapWindowVisibility.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                </Bindings>
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="Footer" style="flex-grow: 0;" />

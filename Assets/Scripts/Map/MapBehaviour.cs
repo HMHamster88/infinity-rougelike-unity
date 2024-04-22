@@ -25,6 +25,8 @@ public class MapBehaviour : MonoBehaviour
 
     private Vector2Int startPosition;
 
+    public Texture2D Minimap;
+
     public Vector2Int StartPosition { 
         get => startPosition; 
         set
@@ -46,5 +48,4 @@ public class MapBehaviour : MonoBehaviour
             }
         }
     }
-
 }

@@ -10,12 +10,6 @@ public class StoneDungeonMapGenerator : MapGenerator
 {
     [SerializeField]
     [Range(0, 10000)]
-    private int Width = 64 + 1;
-    [SerializeField]
-    [Range(0, 10000)]
-    private int Height = 64 + 1;
-    [SerializeField]
-    [Range(0, 10000)]
     private int RoomTries = 100;
     [SerializeField]
     [Range(1, 128)]

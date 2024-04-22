@@ -4,17 +4,20 @@ using UnityEngine;
 using System.Linq;
 
 [RequireComponent(typeof(MapBehaviour))]
-public class MapGenerationBehavor : MonoBehaviour
+public class MapGenerationBehavor : InjectComponentBehaviour
 {
     [SerializeField]
     private MapBehaviour mapBehaviour;
+    [GetComponent]
+    private Minimap minimap;
 
     private MapGenerator[] mapGenerators;
 
     public int CurrentLevel = 1;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         mapGenerators = Resources.LoadAll<MapGenerator>("ScriptableObjects/MapGenerators");
     }
 
@@ -24,7 +27,8 @@ public class MapGenerationBehavor : MonoBehaviour
         var rule = mapGenerators.Where(rule => rule.MinimalLevel <= CurrentLevel)
             .ToList()
             .GetRandomElement();
-       rule.GenerateMap(mapBehaviour, CurrentLevel);
+        rule.GenerateMap(mapBehaviour, CurrentLevel);
+        minimap.InitMinimap(rule.Width, rule.Height);
     }
 
     // Update is called once per frame

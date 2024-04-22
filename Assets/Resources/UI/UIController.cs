@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public ItemsBag playerItemsBag;
     public MapObjectContainer mapObjectContainer;
     public Equipment playerEquipment;
+    public Minimap minimap;
 
     public GameObject atCursorObject;
     public GameObject AtCursorObject
@@ -53,6 +54,7 @@ public class UIController : MonoBehaviour
     public readonly Wrapper<bool> EscapeWindowVisibility = false;
     public readonly Wrapper<bool> CharacterWindowVisibility = false;
     public readonly Wrapper<bool> ContainerWindowVisibility = false;
+    public readonly Wrapper<bool> MapWindowVisibility = false;
 
     private List<Wrapper<bool>> AllWindowsVisibility;
 
@@ -106,7 +108,8 @@ public class UIController : MonoBehaviour
         {
             EscapeWindowVisibility,
             CharacterWindowVisibility,
-            ContainerWindowVisibility
+            ContainerWindowVisibility,
+            MapWindowVisibility
         };
 
         var document = GetComponent<UIDocument>();
@@ -269,5 +272,10 @@ public class UIController : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void HideShowMapWindow()
+    {
+        MapWindowVisibility.Value = !MapWindowVisibility.Value;
     }
 }
