@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -20,8 +19,6 @@ public class StoneDungeonMapGenerator : MapGenerator
     [SerializeField]
     [Range(0, 100)]
     private int ExtraConnectorChance = 1;
-    [SerializeField]
-    private bool AddTestObjectsToFirstRoom = false;
 
     [SerializeField]
     private List<TileBase> WallTiles = new ();
@@ -31,10 +28,9 @@ public class StoneDungeonMapGenerator : MapGenerator
     private Tile ClosedDoorTile = null;
 
     [SerializeField]
-    private List<ContainerGenerationChance> containerGenerationChances = new ();
-
+    private CharactersGenerationSettings CharactersGenerationSettings = new ();
     [SerializeField]
-    private List<CharacterGenerationChance> characterGenerationChances = new ();
+    private ContainersGenerationSettings ContainersGenerationSettings = new ();
 
     bool[,] grid;
     int[,] regions;
@@ -51,6 +47,7 @@ public class StoneDungeonMapGenerator : MapGenerator
 
     List<Vector2Int> doors = new List<Vector2Int>();
     List<RectInt> rooms = new List<RectInt>();
+    HashSet<Vector2Int> freeTiles = new HashSet<Vector2Int>();
 
     public override void GenerateMap(MapBehaviour mapBehaviour, int level)
     {
@@ -105,41 +102,35 @@ public class StoneDungeonMapGenerator : MapGenerator
             }
         }
 
-        fillRooms(mapBehaviour, level);
-
-        if (AddTestObjectsToFirstRoom)
+        foreach(var chance in RandomEx.GetWeightChances(ContainersGenerationSettings.chances, ContainersGenerationSettings.count.GetRandomInclusive(level)))
         {
-            addContainer(mapBehaviour, rooms[0], level, containerGenerationChances.First());
-            addEnemy(mapBehaviour, rooms[0], level, characterGenerationChances[0].ChraracterGenerationRule);
+            if (freeTiles.Count == 0)
+            {
+                break;
+            }
+            var pos = freeTiles.GetRandomElement();
+            pos.RectFromCenter(1).Iterate(p => freeTiles.Remove(p));
+            addContainer(mapBehaviour, pos, level, chance);
         }
+
+        foreach (var chance in RandomEx.GetWeightChances(CharactersGenerationSettings.chances, CharactersGenerationSettings.count.GetRandomInclusive(level)))
+        {
+            if (freeTiles.Count == 0)
+            {
+                break;
+            }
+            var pos = freeTiles.GetRandomElement();
+            pos.RectFromCenter(1).Iterate(p => freeTiles.Remove(p));
+            addEnemy(mapBehaviour, pos, level, chance.ChraracterGenerationRule);
+        }
+
         
         mapBehaviour.StartPosition = Vector2Int.RoundToInt(rooms.First().center);
     }
 
-    private void fillRooms(MapBehaviour mapBehaviour, int level)
+    private void addContainer(MapBehaviour mapBehaviour, Vector2Int position, int level, ContainerGenerationChance containerGenerationChance)
     {
-        foreach(var room in rooms.Skip(1))
-        {
-            foreach (var containerGenerationChance in containerGenerationChances) {
-                if (RandomEx.Chance(containerGenerationChance.PerRoomChance))
-                {
-                    addContainer(mapBehaviour, room, level, containerGenerationChance);
-                }
-            }
-            foreach (var charcterGenerationChance in characterGenerationChances)
-            {
-                if (RandomEx.Chance(charcterGenerationChance.PerRoomChance))
-                {
-                    addEnemy(mapBehaviour, room, level, charcterGenerationChance.ChraracterGenerationRule);
-                }
-            }
-        }
-    }
-    
-    private void addContainer(MapBehaviour mapBehaviour, RectInt room, int level, ContainerGenerationChance containerGenerationChance)
-    {
-        var mapCoord = (Vector3Int) RandomEx.PointInRectInclusive(room.ExtendRect(-2));
-        var worldCoords = mapBehaviour.floorTileMap.CellToWorld(mapCoord) + new Vector3(0.5f, 0.5f);
+        var worldCoords = mapBehaviour.floorTileMap.CellToWorld((Vector3Int)position) + new Vector3(0.5f, 0.5f);
         var container = Instantiate(containerGenerationChance.ContainerPrefab, worldCoords, Quaternion.identity, mapBehaviour.mapObjects.transform);
         var mapObjectContainer = container.gameObject.GetComponent<MapObjectContainer>();
         mapObjectContainer.Level = level;
@@ -148,10 +139,9 @@ public class StoneDungeonMapGenerator : MapGenerator
         lootGeneartor.LootGenerationRule = containerGenerationChance.LootGenerationRule;
     }
 
-    private void addEnemy(MapBehaviour mapBehaviour, RectInt room, int level, CharacterGenerationRule characterGenerationRule)
+    private void addEnemy(MapBehaviour mapBehaviour, Vector2Int position, int level, CharacterGenerationRule characterGenerationRule)
     {
-        var mapCoord = (Vector3Int)RandomEx.PointInRectInclusive(room.ExtendRect(-2));
-        var worldCoords = mapBehaviour.floorTileMap.CellToWorld(mapCoord) + new Vector3(0.5f, 0.5f);
+        var worldCoords = mapBehaviour.floorTileMap.CellToWorld((Vector3Int)position) + new Vector3(0.5f, 0.5f);
         var enemy = characterGenerationRule.Generate(worldCoords, mapBehaviour.enemies.transform, level, mapBehaviour.itemGenerator);
         var characterComponent = enemy.GetComponent<Character>();
         if (characterComponent != null)
@@ -306,6 +296,7 @@ public class StoneDungeonMapGenerator : MapGenerator
     {
         grid[pos.x, pos.y] = true;
         doors.Add(pos);
+        pos.RectFromCenter(1).Iterate(p => freeTiles.Remove(p));
     }
 
     void startRegion()
@@ -402,12 +393,11 @@ public class StoneDungeonMapGenerator : MapGenerator
             rooms.Add(room);
 
             startRegion();
-            for (int y = room.y; y < room.yMax; y++)
+
+            room.Iterate(pos => carve(pos));
+            if (rooms.Count != 1)
             {
-                for (int x = room.x; x < room.xMax; x++)
-                {
-                    carve(new Vector2Int(x, y));
-                }
+                room.Iterate(position => freeTiles.Add(position));
             }
         }
 

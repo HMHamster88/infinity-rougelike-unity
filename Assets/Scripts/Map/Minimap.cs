@@ -1,7 +1,5 @@
 using System;
-using System.Data;
 using System.Linq;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class Minimap : InjectComponentBehaviour
@@ -23,6 +21,8 @@ public class Minimap : InjectComponentBehaviour
     private Color playerColor = Color.red;
     [SerializeField]
     private Color backgroundColor = Color.black;
+    [SerializeField]
+    private bool openAllMapOnInit = false;
 
     private Vector3Int lastPosition;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,9 +32,13 @@ public class Minimap : InjectComponentBehaviour
     }
 
     // Update is called once per frame
+
+    public void OpenAllMap()
+    {
+        openRegion(new Vector3Int(0, 0), new Vector3Int(allMapTexture.width, allMapTexture.height));
+    }
     void Update()
     {
-
         var currentPosition = mapBehaviour.floorTileMap.WorldToCell(Camera.main.transform.position);
         if (currentPosition != lastPosition)
         {
@@ -43,23 +47,7 @@ public class Minimap : InjectComponentBehaviour
 
             var lowerBoundCell = mapBehaviour.floorTileMap.WorldToCell(lowerBound);
             var upperBoundCell = mapBehaviour.floorTileMap.WorldToCell(upperBound);
-
-            for (int y = lowerBoundCell.y; y < upperBoundCell.y; y++)
-            {
-                for (int x = lowerBoundCell.x; x < upperBoundCell.x; x++)
-                {
-                    var floorTile = mapBehaviour.floorTileMap.GetTile(new Vector3Int(x, y, 0));
-                    if (floorTile != null)
-                    {
-                        allMapTexture.SetPixel(x, y, floorColor);
-                    }
-                    var wallTile = mapBehaviour.wallTileMap.GetTile(new Vector3Int(x, y, 0));
-                    if (wallTile != null)
-                    {
-                        allMapTexture.SetPixel(x, y, wallColor);
-                    }
-                }
-            }
+            openRegion(lowerBoundCell, upperBoundCell);
             allMapTexture.SetPixel(currentPosition.x, currentPosition.y, playerColor);
             lastPosition = currentPosition;
             allMapTexture.Apply();
@@ -68,6 +56,25 @@ public class Minimap : InjectComponentBehaviour
         }
     }
 
+    private void openRegion(Vector3Int lowerBoundCell, Vector3Int upperBoundCell)
+    {
+        for (int y = lowerBoundCell.y; y < upperBoundCell.y; y++)
+        {
+            for (int x = lowerBoundCell.x; x < upperBoundCell.x; x++)
+            {
+                var floorTile = mapBehaviour.floorTileMap.GetTile(new Vector3Int(x, y, 0));
+                if (floorTile != null)
+                {
+                    allMapTexture.SetPixel(x, y, floorColor);
+                }
+                var wallTile = mapBehaviour.wallTileMap.GetTile(new Vector3Int(x, y, 0));
+                if (wallTile != null)
+                {
+                    allMapTexture.SetPixel(x, y, wallColor);
+                }
+            }
+        }
+    }
     private void updateTexture(Vector3Int currentPosition)
     {
         var textureWidth = texture.width;
@@ -87,6 +94,11 @@ public class Minimap : InjectComponentBehaviour
         texture = new Texture2D(viewRange * 2 + 1, viewRange * 2 + 1, TextureFormat.ARGB32, false);
         texture.filterMode = FilterMode.Point;
         fillTexture(texture, backgroundColor);
+
+        if (openAllMapOnInit)
+        {
+            OpenAllMap();
+        }
     }
 
     public void fillTexture(Texture2D texture, Color color)
