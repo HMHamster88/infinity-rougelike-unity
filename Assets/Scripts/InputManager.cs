@@ -1,5 +1,7 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class InputManager : MonoBehaviour
 {
@@ -7,31 +9,22 @@ public class InputManager : MonoBehaviour
     private UIController uiController;
     [SerializeField]
     private PlayerController playerController;
+    [SerializeField]
+    private GameSaveManager gameSaveManager;
 
+    private Vector2 walkDirection = Vector2.zero;
+    private bool attacking = false;
     private void FixedUpdate()
     {
         if (!uiController.AnyWindowShown)
         {
-            playerController.SetWalkDirection(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized);
+            playerController.SetWalkDirection(walkDirection);
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            uiController.HideShowCharacterWindow();
-        }
-        else if (Input.GetKeyDown(KeyCode.M))
-        {
-            uiController.HideShowMapWindow();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            uiController.Escape();
-        }
-
-        var mouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mouseWorldPoint = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
 
         if (!uiController.AnyWindowShown)
         {
@@ -39,20 +32,61 @@ public class InputManager : MonoBehaviour
                 .Where(collider => collider.GetComponent<INamed>() != null)
                 .Select(collider => collider.gameObject)
                 .FirstOrDefault();
-
-            if (Input.GetMouseButton(1))
+            if (attacking)
             {
                 playerController.Attack(mouseWorldPoint);
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                playerController.InteractWithMapObjects(mouseWorldPoint);
-            }
         }
         else
         {
             uiController.AtCursorObject = null;
         }
+    }
+
+    public void OnInventory()
+    {
+        uiController.HideShowCharacterWindow();
+    }
+
+    public void OnMove(InputValue value)
+    {
+        walkDirection = value.Get<Vector2>().normalized;
+    }
+
+    public void OnInteract()
+    {
+        var mouseWorldPoint = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+
+        if (!uiController.AnyWindowShown)
+        {
+            playerController.InteractWithMapObjects(mouseWorldPoint);
+        }
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        attacking = value.isPressed;
+    }
+
+    public void OnEscape()
+    {
+        uiController.Escape();
+    }
+
+    public void OnMap()
+    {
+        uiController.HideShowMapWindow();
+    }
+
+    public void OnSaveGame()
+    {
+        gameSaveManager.Save(new SaveGame());
+    }
+
+    public void OnLoadGame()
+    {
+        var saveGame = gameSaveManager.Load("SaveGame");
+        Debug.Log(saveGame.ToString());
     }
 }
