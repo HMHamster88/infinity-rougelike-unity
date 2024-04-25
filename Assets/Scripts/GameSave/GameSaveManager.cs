@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.IO;
 using UnityEngine;
 
@@ -5,6 +6,11 @@ public class GameSaveManager : MonoBehaviour
 {
     public string SavesDir = "Saves";
     public string Extension = ".json";
+
+    public GameObject player;
+
+    ItemSaveDataConverter itemConverter = new ItemSaveDataConverter();
+
 
     public void Save(SaveGame saveGame)
     {
@@ -14,7 +20,7 @@ public class GameSaveManager : MonoBehaviour
         {
             using (var writer = new StreamWriter(stream))
             {
-                var saveGameJson = JsonUtility.ToJson(saveGame);
+                var saveGameJson = JsonConvert.SerializeObject(saveGame);
                 writer.Write(saveGameJson);
             }
         }
@@ -28,8 +34,25 @@ public class GameSaveManager : MonoBehaviour
         {
             using (var reader = new StreamReader(stream))
             {
-                return JsonUtility.FromJson<SaveGame>(reader.ReadToEnd());
+                return JsonConvert.DeserializeObject<SaveGame>(reader.ReadToEnd());
             }
         }
     }
+
+    public void SaveCurrentGame()
+    {
+        var itemConverter = new ItemSaveDataConverter();
+        var saveGame = new SaveGame
+        {
+            PlayerItemsBag = itemConverter.ToItemsBagSaveData(player.GetComponent<ItemsBag>())
+        };
+        Save(saveGame);
+    }
+
+    public void LoadCurrentGame()
+    {
+        var saveGame = Load("SaveGame");
+        itemConverter.FillItemsBag(player.GetComponent<ItemsBag>(), saveGame.PlayerItemsBag);
+    }
+
 }

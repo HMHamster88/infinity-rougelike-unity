@@ -6,4 +6,5 @@ using UnityEngine;
 public class SaveGame
 {
     public string Name = "SaveGame";
+    public ItemsBagSaveData PlayerItemsBag;
 }

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemsBag : MonoBehaviour
 {
-    public List<ItemSlot> itemsSlots = new List<ItemSlot> ();
+    public List<ItemSlot> itemsSlots = new List<ItemSlot>();
     public int initialSlotsCount = 16;
 
     public IEnumerable<ItemSlot> FilledSlots
@@ -61,7 +60,7 @@ public class ItemsBag : MonoBehaviour
 
     public void LayFromBag(ItemsBag source)
     {
-        foreach(var sourceSlot in source.FilledSlots) 
+        foreach (var sourceSlot in source.FilledSlots)
         {
             var sourceItem = sourceSlot.Item;
             if (sourceItem.TryGetComponent<ItemQuantity>(out var sourceQuantity) && FindQuantitySlot(sourceQuantity, out var targetSlot))
@@ -80,6 +79,14 @@ public class ItemsBag : MonoBehaviour
                     sourceSlot.Item = null;
                 }
             }
+        }
+    }
+
+    public void RemoveAllItems()
+    {
+        foreach (var itemSlot in itemsSlots)
+        {
+            itemSlot.Item = null;
         }
     }
 }

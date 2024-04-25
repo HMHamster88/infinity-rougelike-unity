@@ -81,12 +81,11 @@ public class InputManager : MonoBehaviour
 
     public void OnSaveGame()
     {
-        gameSaveManager.Save(new SaveGame());
+        gameSaveManager.SaveCurrentGame();
     }
 
     public void OnLoadGame()
     {
-        var saveGame = gameSaveManager.Load("SaveGame");
-        Debug.Log(saveGame.ToString());
+        gameSaveManager.LoadCurrentGame();
     }
 }
