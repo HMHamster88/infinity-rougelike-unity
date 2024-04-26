@@ -8,7 +8,8 @@ public class HealItemPropertyGenerationRule : ItemPropertyGenerationRule
 
     public override ItemProperty GenerateProperty(int level)
     {
-        var property = ScriptableObject.CreateInstance<HealItemProperty>();
+        var property = new HealItemProperty();
+        property.GenerationRule = this;
         property.HealAmouth = healAmouth;
         return property;
     }

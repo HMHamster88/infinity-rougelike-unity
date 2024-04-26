@@ -1,19 +1,28 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using Unity.Properties;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Localization;
 
 [Serializable]
 public class Item : INamed
 {
+    [JsonIgnore]
     public LocalizedString Name;
+    [JsonIgnore]
     public ItemSlot.Type SlotType = ItemSlot.Type.Bag;
+    [JsonIgnore]
     public Sprite Sprite;
+    [JsonConverter(typeof(ItemGenerationRuleConverter))]
     public ItemGenerationRule generationRule;
     public List<ItemProperty> ItemProperties = new();
 
+    [JsonIgnore]
     [CreateProperty]
     public int? Quantity
     {
@@ -28,6 +37,7 @@ public class Item : INamed
         }
     }
 
+    [JsonIgnore]
     string INamed.Name => Name.GetLocalizedString();
 
     public T GetProperty<T>() where T : ItemProperty
@@ -38,5 +48,18 @@ public class Item : INamed
     public IEnumerable<T> GetProperties<T>() where T : ItemProperty
     {
         return ItemProperties.Where(prop => prop is T).Cast<T>();
+    }
+
+    [OnDeserialized]
+    internal void OnDeserializedMethod(StreamingContext context)
+    {
+        Name = generationRule.ItemName;
+        Sprite = generationRule.Sprite;
+        SlotType = generationRule.SlotType;
+        foreach (var prop in ItemProperties)
+        {
+            prop.GenerationRule = generationRule.GetItemPropertyGenerationRule(prop.GenerationRule.ID);
+            prop.SetDataFromRule();
+        }
     }
 }

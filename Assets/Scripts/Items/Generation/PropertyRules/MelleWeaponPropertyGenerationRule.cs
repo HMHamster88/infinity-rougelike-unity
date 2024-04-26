@@ -13,9 +13,9 @@ public class MelleWeaponPropertyGenerationRule : WeaponPropertyGenerationRule
 
     public override ItemProperty GenerateProperty(int level)
     {
-        var property = ScriptableObject.CreateInstance<MelleWeaponProperty>();
+        var property = new MelleWeaponProperty();
         SetParentProps(property);
-        property.AttacksPerSecond = AttacksPerSecond;
+        property.AttacksPerSecond = attacksPerSecond;
         property.Distance = Distance;
         property.MaxDistance = MaxDistance;
         property.AttackAngleRange = AttackAngleRange;

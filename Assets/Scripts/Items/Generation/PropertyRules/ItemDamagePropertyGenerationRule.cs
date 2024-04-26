@@ -15,7 +15,8 @@ public class ItemDamagePropertyGenerationRule : ItemPropertyGenerationRule
 
     public override ItemProperty GenerateProperty(int level)
     {
-        var damageProperty = ScriptableObject.CreateInstance<DamageItemProperty>();
+        var damageProperty = new DamageItemProperty();
+        damageProperty.GenerationRule = this;
         damageProperty.Type = type;
         damageProperty.MinValue = MinDamage.GetMin(level);
         damageProperty.MaxValue = MaxDamage.GetMax(level);

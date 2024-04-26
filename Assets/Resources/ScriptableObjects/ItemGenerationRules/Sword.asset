@@ -36,6 +36,7 @@ MonoBehaviour:
     - rid: 1578213063821886118
       type: {class: ItemDamagePropertyGenerationRule, ns: , asm: Assembly-CSharp}
       data:
+        ID: 2771300c-da0b-4dd6-8cff-71bb8854a427
         type: 0
         MinDamage:
           min:
@@ -58,8 +59,9 @@ MonoBehaviour:
     - rid: 7220094980663017544
       type: {class: MelleWeaponPropertyGenerationRule, ns: , asm: Assembly-CSharp}
       data:
-        AttacksPerSecond: 2
-        attackSounds:
+        ID: 70c0101b-e8c4-464c-8c35-bc6b2a5ca05a
+        attacksPerSecond: 2
+        AttackSounds:
         - {fileID: 8300000, guid: 1660e0f31d9036e4d91f52d3fdc3e1bd, type: 3}
         - {fileID: 8300000, guid: 6b24f43f8042f7546a8ca89a59df5dc3, type: 3}
         - {fileID: 8300000, guid: a59c26785b2a0c34aafc9938052a46e2, type: 3}

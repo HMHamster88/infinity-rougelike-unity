@@ -33,7 +33,7 @@ public class ItemsBag : MonoBehaviour
 
     private void OnEnable()
     {
-        itemsSlots.AddRange(Enumerable.Range(0, initialSlotsCount).Select(x => ItemSlot.CreateInstance<ItemSlot>()));
+        itemsSlots.AddRange(Enumerable.Range(0, initialSlotsCount).Select(x => new ItemSlot()));
     }
 
     public void LayItems(List<Item> items)

@@ -9,8 +9,12 @@ public class GameSaveManager : MonoBehaviour
 
     public GameObject player;
 
-    ItemSaveDataConverter itemConverter = new ItemSaveDataConverter();
-
+    readonly JsonSerializerSettings settings = new JsonSerializerSettings 
+    { 
+        TypeNameHandling = TypeNameHandling.All, 
+        ContractResolver = new SaveGameContractResolver(), 
+        Formatting = Formatting.Indented 
+    };
 
     public void Save(SaveGame saveGame)
     {
@@ -20,7 +24,7 @@ public class GameSaveManager : MonoBehaviour
         {
             using (var writer = new StreamWriter(stream))
             {
-                var saveGameJson = JsonConvert.SerializeObject(saveGame);
+                var saveGameJson = JsonConvert.SerializeObject(saveGame, settings);
                 writer.Write(saveGameJson);
             }
         }
@@ -34,17 +38,17 @@ public class GameSaveManager : MonoBehaviour
         {
             using (var reader = new StreamReader(stream))
             {
-                return JsonConvert.DeserializeObject<SaveGame>(reader.ReadToEnd());
+                return JsonConvert.DeserializeObject<SaveGame>(reader.ReadToEnd(), settings);
             }
         }
     }
 
     public void SaveCurrentGame()
     {
-        var itemConverter = new ItemSaveDataConverter();
         var saveGame = new SaveGame
         {
-            PlayerItemsBag = itemConverter.ToItemsBagSaveData(player.GetComponent<ItemsBag>())
+            PlayerItems = player.GetComponent<ItemsBag>().itemsSlots,
+            PlayerEquipment = EquipmentSaveData.FromEquipment(player.GetComponent<Equipment>())
         };
         Save(saveGame);
     }
@@ -52,7 +56,10 @@ public class GameSaveManager : MonoBehaviour
     public void LoadCurrentGame()
     {
         var saveGame = Load("SaveGame");
-        itemConverter.FillItemsBag(player.GetComponent<ItemsBag>(), saveGame.PlayerItemsBag);
+        var itemsBag = player.GetComponent<ItemsBag>();
+        itemsBag.itemsSlots = saveGame.PlayerItems;
+        var equipment = player.GetComponent<Equipment>();
+        saveGame.PlayerEquipment.SetItems(equipment);
     }
 
 }

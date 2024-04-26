@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -10,6 +11,7 @@ public class ItemGenerationRule : ScriptableObject
     [SerializeField]
     private LocalizedString itemName;
     [SerializeField]
+    [JsonIgnore]
     private Sprite sprite;
     [SerializeField]
     private ItemSlot.Type slotType;
@@ -30,5 +32,10 @@ public class ItemGenerationRule : ScriptableObject
             Sprite = sprite,
             ItemProperties = itemProperties.Select(prop => prop.Rule.GenerateProperty(level)).ToList()
         };
+    }
+
+    public ItemPropertyGenerationRule GetItemPropertyGenerationRule(string id)
+    {
+        return itemProperties.Select(chance => chance.Rule).FirstOrDefault(rule => rule.ID == id);
     }
 }

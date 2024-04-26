@@ -2,7 +2,12 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class ItemPropertyGenerationRule
+public class ItemPropertyGenerationRule
 {
-    public abstract ItemProperty GenerateProperty(int level);
+    [SerializeField]
+    public string ID = Guid.NewGuid().ToString();
+    public virtual ItemProperty GenerateProperty(int level) 
+    {
+        throw new NotImplementedException();
+    }
 }

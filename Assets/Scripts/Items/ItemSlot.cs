@@ -1,10 +1,9 @@
-using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Unity.Properties;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class ItemSlot : ScriptableObject
+public class ItemSlot : FixedObject
 {
     public enum Type
     {
@@ -18,12 +17,14 @@ public class ItemSlot : ScriptableObject
         Ring
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public Type type;
     
     public Item Item;
 
     private static Sprite[] backgroundIcons;
 
+    [JsonIgnore]
     [CreateProperty]
     public Sprite BackgroundIcon
     {
@@ -41,6 +42,7 @@ public class ItemSlot : ScriptableObject
         }
     }
 
+    [JsonIgnore]
     [CreateProperty]
     public bool HasItem
     {
@@ -50,6 +52,7 @@ public class ItemSlot : ScriptableObject
         }
     }
 
+    [JsonIgnore]
     [CreateProperty]
     public Sprite ItemSprite
     {
@@ -64,6 +67,7 @@ public class ItemSlot : ScriptableObject
         }
     }
 
+    [JsonIgnore]
     [CreateProperty]
     public int? ItemQuantity
     {

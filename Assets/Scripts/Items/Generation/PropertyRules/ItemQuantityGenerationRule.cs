@@ -12,7 +12,8 @@ public class ItemQuantityGenerationRule : ItemPropertyGenerationRule
     private string sameItemIdentifier;
     public override ItemProperty GenerateProperty(int level)
     {
-        var property = ScriptableObject.CreateInstance<ItemQuantity>();
+        var property = new ItemQuantity();
+        property.GenerationRule = this;
         property.Quantity = quantity.GetRandomInclusive(level);
         property.SameItemIdentifier = sameItemIdentifier;
         return property;

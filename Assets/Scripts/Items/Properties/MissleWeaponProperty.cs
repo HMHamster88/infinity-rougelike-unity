@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class MissleWeaponProperty : WeaponProperty
 {
     public float Distance = 10.0f;
+    [JsonIgnore]
     public GameObject ProjectilePrefab;
     public float ProjectileStartSpeed = 10.0f;
     public float AttackAngleScatter = 5.0f;
@@ -50,11 +50,11 @@ public class MissleWeaponProperty : WeaponProperty
         projectileComponent.TargetPoint = targetPoint;
     }
 
-    private void Update()
+    public override void SetDataFromRule()
     {
-        if (attacker == null)
-        {
-            return;
-        }
+        base.SetDataFromRule();
+        var generationRule = (MissleWeaponPropertyGenerationRule) GenerationRule;
+        ProjectilePrefab = generationRule.ProjectilePrefab;
+
     }
 }

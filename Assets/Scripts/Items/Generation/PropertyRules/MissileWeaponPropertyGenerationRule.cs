@@ -5,7 +5,7 @@ public class MissleWeaponPropertyGenerationRule : WeaponPropertyGenerationRule
     [SerializeField]
     private float Distance = 10.0f;
     [SerializeField]
-    private GameObject ProjectilePrefab;
+    public GameObject ProjectilePrefab;
     [SerializeField]
     private float ProjectileStartSpeed = 10.0f;
     [SerializeField]
@@ -13,7 +13,7 @@ public class MissleWeaponPropertyGenerationRule : WeaponPropertyGenerationRule
 
     public override ItemProperty GenerateProperty(int level)
     {
-        var property = ScriptableObject.CreateInstance<MissleWeaponProperty>();
+        var property = new MissleWeaponProperty();
         SetParentProps(property);
         property.Distance = Distance;
         property.ProjectilePrefab = ProjectilePrefab;

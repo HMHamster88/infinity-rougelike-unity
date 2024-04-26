@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -6,5 +7,6 @@ using UnityEngine;
 public class SaveGame
 {
     public string Name = "SaveGame";
-    public ItemsBagSaveData PlayerItemsBag;
+    public List<ItemSlot> PlayerItems;
+    public EquipmentSaveData PlayerEquipment;
 }

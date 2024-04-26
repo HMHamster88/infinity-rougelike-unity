@@ -1,17 +1,17 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class WeaponPropertyGenerationRule : ItemPropertyGenerationRule
 {
     [SerializeField]
-    protected float AttacksPerSecond = 2;
+    protected float attacksPerSecond = 2;
     [SerializeField]
-    protected List<AudioClip> attackSounds;
+    public List<AudioClip> AttackSounds;
 
     protected void SetParentProps(WeaponProperty weaponProperty)
     {
-        weaponProperty.AttackSounds = attackSounds;
-        weaponProperty.AttacksPerSecond = AttacksPerSecond;
+        weaponProperty.AttackSounds = AttackSounds;
+        weaponProperty.AttacksPerSecond = attacksPerSecond;
+        weaponProperty.GenerationRule = this;
     }
 }

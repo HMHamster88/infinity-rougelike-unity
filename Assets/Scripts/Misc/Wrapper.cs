@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Wrapper<T> where T : struct
+public class Wrapper<T>
 {
     public T Value;
 

@@ -52,7 +52,7 @@ public class Equipment : MonoBehaviour
 
     private static ItemSlot createItemsSlot(ItemSlot.Type type)
     {
-        var slot = ScriptableObject.CreateInstance<ItemSlot>();
+        var slot = new ItemSlot();
         slot.type = type;
         return slot;
     }

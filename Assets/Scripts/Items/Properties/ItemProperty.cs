@@ -1,15 +1,19 @@
+using Newtonsoft.Json;
 using System;
-using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 [Serializable]
-public abstract class ItemProperty: ScriptableObject
+public abstract class ItemProperty: FixedObject
 {
+    [JsonConverter(typeof(ItemPropertyGenerationRuleConverter))]
+    public ItemPropertyGenerationRule GenerationRule;
+
     protected abstract string descriptionKey { get; }
 
     private LocalizedString description;
 
+    [JsonIgnore]
     public string LocalizedDescription
     {
         get
@@ -28,4 +32,6 @@ public abstract class ItemProperty: ScriptableObject
             return description.GetLocalizedString();
         }
     }
+
+    public virtual void SetDataFromRule() { }
 }
