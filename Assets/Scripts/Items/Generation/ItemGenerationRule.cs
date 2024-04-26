@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -19,16 +20,15 @@ public class ItemGenerationRule : ScriptableObject
     public Sprite Sprite { get => sprite; }
     public ItemSlot.Type SlotType { get => slotType; }
 
-    public GameObject Generate(int level)
+    public Item Generate(int level)
     {
-        var itemGameObject = new GameObject();
-        itemGameObject.name = this.name;
-        var itemComponent = itemGameObject.AddComponent<Item>();
-        itemComponent.generationRule = this;
-        itemComponent.Name = itemName;
-        itemComponent.SlotType = slotType;
-        itemComponent.Sprite = sprite;
-        itemProperties.ForEach(itemProperty => itemProperty.GenerateProperty(itemGameObject, level));
-        return itemGameObject;
+        return new Item
+        {
+            generationRule = this,
+            Name = itemName,
+            SlotType = slotType,
+            Sprite = sprite,
+            ItemProperties = itemProperties.Select(prop => prop.Rule.GenerateProperty(level)).ToList()
+        };
     }
 }

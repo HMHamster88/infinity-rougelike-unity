@@ -11,14 +11,15 @@ public class MelleWeaponPropertyGenerationRule : WeaponPropertyGenerationRule
     [SerializeField]
     private float AttackTime = 0.2f;
 
-    public override void GenerateProperty(GameObject item, int level)
+    public override ItemProperty GenerateProperty(int level)
     {
-        var property = item.AddComponent<MelleWeaponProperty>();
+        var property = ScriptableObject.CreateInstance<MelleWeaponProperty>();
         SetParentProps(property);
         property.AttacksPerSecond = AttacksPerSecond;
         property.Distance = Distance;
         property.MaxDistance = MaxDistance;
         property.AttackAngleRange = AttackAngleRange;
         property.AttackTime = AttackTime;
+        return property;
     }
 }

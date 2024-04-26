@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class AttackCalculator
 {
-    public static void ApplyAttack(GameObject attacker, GameObject target, GameObject weapon)
+    public static void ApplyAttack(GameObject attacker, GameObject target, Item weapon)
     {
         // calculate weapon Damage
-        var weaponDamages = weapon.GetComponents<DamageItemProperty>();
+        var weaponDamages = weapon.GetProperties<DamageItemProperty>();
         var damage = new ComplexDamage();
         foreach (var weponDamage in weaponDamages)
         {

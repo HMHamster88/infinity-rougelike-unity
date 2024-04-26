@@ -27,10 +27,9 @@ public class ItemDragAndDropRule : IDragAndDropRule
             {
                 if (dropItemSlot.Item != null)
                 {
-                    var dropItemQuantity = dropItemSlot.Item.GetComponent<ItemQuantity>();
-                    var dragItemQuantity = draggedItem.GetComponent<ItemQuantity>();
+                    var dropItemQuantity = dropItemSlot.Item.GetProperty<ItemQuantity>();
+                    var dragItemQuantity = draggedItem.GetProperty<ItemQuantity>();
                     dropItemQuantity.Quantity += dragItemQuantity.Quantity;
-                    GameObject.Destroy(dragItemQuantity.gameObject);
                 }
                 else
                 {
@@ -52,8 +51,8 @@ public class ItemDragAndDropRule : IDragAndDropRule
         }
         if (dropItemSlot.Item != null)
         {
-            var dropItemQuantity = dropItemSlot.Item.GetComponent<ItemQuantity>();
-            var dragItemQuantity = item.GetComponent<ItemQuantity>();
+            var dropItemQuantity = dropItemSlot.Item.GetProperty<ItemQuantity>();
+            var dragItemQuantity = item.GetProperty<ItemQuantity>();
             if (dropItemQuantity == null || dragItemQuantity == null)
             {
                 return false;

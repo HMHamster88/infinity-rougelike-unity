@@ -1,26 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
-public abstract class ItemProperty : MonoBehaviour
+[Serializable]
+public abstract class ItemProperty: ScriptableObject
 {
     protected abstract string descriptionKey { get; }
 
     private LocalizedString description;
 
-    private void OnEnable()
+    public string LocalizedDescription
     {
-        if (descriptionKey != null)
+        get
         {
-            description = new LocalizedString("ItemProperties", descriptionKey)
+            if (descriptionKey == null)
             {
-                { "prop", new ObjectVariable { Value = this } }
-            };
+                return null;
+            }
+            if (description == null)
+            {
+                description = new LocalizedString("ItemProperties", descriptionKey)
+                {
+                    { "prop", new ObjectVariable { Value = this } }
+                };
+            }
+            return description.GetLocalizedString();
         }
     }
-
-    public string LocalizedDescription { get => description.GetLocalizedString(); }
 }

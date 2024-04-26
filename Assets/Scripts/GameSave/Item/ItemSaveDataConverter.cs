@@ -35,7 +35,7 @@ public class ItemSaveDataConverter
         return new ItemSaveData
         {
             GenerationRulePath = AssetDatabase.GetAssetPath(item.generationRule).Replace("Assets/Resources/", "").Replace(".asset", ""),
-            ItemProperties = item.GetComponents<ItemProperty>().Select(ToItemPropertySaveData).ToList()
+            ItemProperties = item.ItemProperties.Select(ToItemPropertySaveData).ToList()
         };
     }
 
@@ -54,8 +54,7 @@ public class ItemSaveDataConverter
             return null;
         }
         var itemGeneratiobRule = Resources.Load<ItemGenerationRule>(itemSaveData.GenerationRulePath);
-        var itemGameObject = new GameObject();
-        var item = itemGameObject.AddComponent<Item>();
+        var item = new Item();
         item.generationRule = itemGeneratiobRule;
         item.Name = itemGeneratiobRule.ItemName;
         item.Sprite = itemGeneratiobRule.Sprite;

@@ -14,7 +14,7 @@ public class LevelItemGenerationRule : ScriptableObject
     public int Level { get => level; }
     public List<ItemDropChance> DropChances { get => dropChances; }
 
-    public IEnumerable<GameObject> Generate(int level) 
+    public IEnumerable<Item> Generate(int level) 
     {
         return dropChances
             .Select(dropChance => dropChance.Generate(level))

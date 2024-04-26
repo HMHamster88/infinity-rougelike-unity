@@ -17,11 +17,15 @@ public class MelleWeaponProperty : WeaponProperty
     private Vector2 targetPoint;
     private float currentAttackTime;
     private List<GameObject> alreadyHitted = new List<GameObject>();
+    private Item weaponItem;
 
-    public override void Attack(GameObject attacker, Vector2 targetPoint)
+    protected override string descriptionKey => null;
+
+    public override void Attack(GameObject attacker, Vector2 targetPoint, Item weaponItem)
     {
         this.attacker = attacker;
         this.targetPoint = targetPoint;
+        this.weaponItem = weaponItem;
         this.currentAttackTime = 0;
         this.alreadyHitted.Clear();
 
@@ -74,7 +78,7 @@ public class MelleWeaponProperty : WeaponProperty
             var damageReceiver = firstObject.GetComponent<DamageReceiver>();
             if (damageReceiver != null)
             {
-                AttackCalculator.ApplyAttack(attacker, firstObject, this.gameObject);
+                AttackCalculator.ApplyAttack(attacker, firstObject, weaponItem);
             }
         }
 

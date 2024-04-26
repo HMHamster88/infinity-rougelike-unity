@@ -10,10 +10,11 @@ public class ItemQuantityGenerationRule : ItemPropertyGenerationRule
     private IntLevelValueRange quantity = new();
     [SerializeField]
     private string sameItemIdentifier;
-    public override void GenerateProperty(GameObject item, int level)
+    public override ItemProperty GenerateProperty(int level)
     {
-        var property = item.AddComponent<ItemQuantity>();
+        var property = ScriptableObject.CreateInstance<ItemQuantity>();
         property.Quantity = quantity.GetRandomInclusive(level);
         property.SameItemIdentifier = sameItemIdentifier;
+        return property;
     }
 }

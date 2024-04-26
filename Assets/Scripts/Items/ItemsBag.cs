@@ -48,7 +48,8 @@ public class ItemsBag : MonoBehaviour
     {
         slot = FilledSlots.Where(slot =>
         {
-            if (slot.Item.TryGetComponent<ItemQuantity>(out var quantity))
+            var quantity = slot.Item.GetProperty<ItemQuantity>();
+            if (quantity != null)
             {
                 return quantity.SameItem(itemQuantity);
             }
@@ -63,12 +64,12 @@ public class ItemsBag : MonoBehaviour
         foreach (var sourceSlot in source.FilledSlots)
         {
             var sourceItem = sourceSlot.Item;
-            if (sourceItem.TryGetComponent<ItemQuantity>(out var sourceQuantity) && FindQuantitySlot(sourceQuantity, out var targetSlot))
+            var sourceQuantity = sourceItem.GetProperty<ItemQuantity>();
+            if (sourceQuantity  != null && FindQuantitySlot(sourceQuantity, out var targetSlot))
             {
-                var targetQuantity = targetSlot.Item.GetComponent<ItemQuantity>();
+                var targetQuantity = targetSlot.Item.GetProperty<ItemQuantity>();
                 targetQuantity.Quantity += sourceQuantity.Quantity;
                 sourceSlot.Item = null;
-                Destroy(sourceItem);
             }
             else
             {

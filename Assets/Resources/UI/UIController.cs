@@ -151,7 +151,7 @@ public class UIController : MonoBehaviour
         if (item != null)
         {
             ItemDescriptionTooltip = item.Name.GetLocalizedString() + "\r\n" +
-            String.Join("\r\n", item.GetComponents<ItemProperty>().Select(ip => ip.LocalizedDescription));
+            String.Join("\r\n", item.ItemProperties.Select(ip => ip.LocalizedDescription));
             setTooltipPosition(itemDescriptionView, element);
             ItemDescriptionViewVisibility = true;
         }
@@ -203,12 +203,13 @@ public class UIController : MonoBehaviour
             var itemSlot = (evt.target as VisualElement).GetDataSourceWithPathRecursive<ItemSlot>();
             if (itemSlot != null && itemSlot.Item != null)
             {
-                var applyProperty = itemSlot.Item.GetComponent<ApplyItemProperty>();
+                var item = itemSlot.Item;
+                var applyProperty = (ApplyItemProperty) item.ItemProperties.FirstOrDefault(prop => prop.GetType() == typeof(ApplyItemProperty));
                 if (applyProperty != null)
                 {
                     if (applyProperty.Apply(player))
                     {
-                        var quantity = applyProperty.GetComponent<ItemQuantity>();
+                        var quantity = itemSlot.Item.GetProperty<ItemQuantity>();
                         if (quantity != null)
                         {
                             quantity.Quantity--;
@@ -216,7 +217,6 @@ public class UIController : MonoBehaviour
                         if (quantity == null || quantity.Quantity <= 0)
                         {
                             itemSlot.Item = null;
-                            GameObject.Destroy(quantity.gameObject);
                         }
                     }
                 }

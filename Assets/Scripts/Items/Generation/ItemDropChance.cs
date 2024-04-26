@@ -13,7 +13,7 @@ public class ItemDropChance : IChance
     public float Chance { get => chance; }
     public ItemGenerationRule Rule { get => rule; }
 
-    public GameObject Generate(int level)
+    public Item Generate(int level)
     {
         if (UnityEngine.Random.Range(0, 1.0f) <= chance)
         {

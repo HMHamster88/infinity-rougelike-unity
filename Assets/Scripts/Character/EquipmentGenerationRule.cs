@@ -41,7 +41,7 @@ public class EquipmentGenerationRule
     {
         if (itemGenerationRule != null)
         {
-            slot.Item = itemGenerationRule.Generate(level).GetComponent<Item>();
+            slot.Item = itemGenerationRule.Generate(level);
         }
     }
 }

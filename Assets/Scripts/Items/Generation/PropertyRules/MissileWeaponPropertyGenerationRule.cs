@@ -11,13 +11,14 @@ public class MissleWeaponPropertyGenerationRule : WeaponPropertyGenerationRule
     [SerializeField]
     private float AttackAngleScatter = 5.0f;
 
-    public override void GenerateProperty(GameObject item, int level)
+    public override ItemProperty GenerateProperty(int level)
     {
-        var property = item.AddComponent<MissleWeaponProperty>();
+        var property = ScriptableObject.CreateInstance<MissleWeaponProperty>();
         SetParentProps(property);
         property.Distance = Distance;
         property.ProjectilePrefab = ProjectilePrefab;
         property.ProjectileStartSpeed = ProjectileStartSpeed;
         property.AttackAngleScatter = AttackAngleScatter;
+        return property;
     }
 }

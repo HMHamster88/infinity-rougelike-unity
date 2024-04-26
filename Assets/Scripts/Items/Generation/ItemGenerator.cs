@@ -20,7 +20,6 @@ public class ItemGenerator : MonoBehaviour
         return Enumerable.Range(0, attemps)
             .SelectMany(attemp => levels)
             .SelectMany(rule => rule.Generate(level))
-            .Select(i => i.GetComponent<Item>())
             .ToList();
     }
 
@@ -40,7 +39,6 @@ public class ItemGenerator : MonoBehaviour
         var allChances = getAllLevelItemChances(level).ToList();
         return RandomEx.GetWeightChances(allChances, count)
             .Select(chance => chance.Rule.Generate(level))
-            .Select(itemObject => itemObject.GetComponent<Item>())
             .ToList();
     }
 
@@ -67,8 +65,8 @@ public class ItemGenerator : MonoBehaviour
                 return result;
             }
             var chance = RandomEx.GetWeightChance(allChances);
-            var itemGameObject = chance.Rule.Generate(level);
-            result.Add(itemGameObject.GetComponent<Item>());
+            var item = chance.Rule.Generate(level);
+            result.Add(item);
             allChances.Remove(chance);
         }
         return result;

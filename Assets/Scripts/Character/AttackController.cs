@@ -31,7 +31,7 @@ public class AttackController : MonoBehaviour
         var allWeapons = equipment.AllItemSlots
             .Where(slot => slot.Item != null)
             .Select(slot => slot.Item)
-            .Where(item => item.GetComponent<WeaponProperty>() != null)
+            .Where(item => item.GetProperty<WeaponProperty>() != null)
             .ToList();
         if (currentWeapon == null)
         {
@@ -63,8 +63,8 @@ public class AttackController : MonoBehaviour
             return; 
         }
 
-        var weaponComponent = currentWeapon.GetComponent<WeaponProperty>();
-        weaponComponent.Attack(gameObject, targetPoint);
+        var weaponComponent = currentWeapon.GetProperty<WeaponProperty>();
+        weaponComponent.Attack(gameObject, targetPoint, currentWeapon);
 
         cooldownTime = 1.0f / weaponComponent.AttacksPerSecond;
     }

@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     public List<AudioClip> ImpactSounds = new List<AudioClip>();
 
     public MissleWeaponProperty MissleWeaponProperty;
+    public Item WeaponItem;
     public GameObject Attacker;
     public Vector2 TargetPoint;
     public float MaxLiveTime = 5;
@@ -40,7 +41,7 @@ public class Projectile : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<DamageReceiver>(out var damageReceiver))
         {
-            AttackCalculator.ApplyAttack(Attacker, collision.gameObject, MissleWeaponProperty.gameObject);
+            AttackCalculator.ApplyAttack(Attacker, collision.gameObject, WeaponItem);
         }
 
         DestroyProjectile();

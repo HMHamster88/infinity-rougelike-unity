@@ -19,7 +19,7 @@ public class BagInitializator : MonoBehaviour
         {
             bag = GetComponent<ItemsBag>();
         }
-        bag.LayItems(generationRules.Select(rule => rule.Generate(level)).Select(item => item.GetComponent<Item>()).ToList());
+        bag.LayItems(generationRules.Select(rule => rule.Generate(level)).ToList());
     }
 
     // Update is called once per frame

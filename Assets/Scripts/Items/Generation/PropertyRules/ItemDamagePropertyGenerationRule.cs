@@ -13,11 +13,12 @@ public class ItemDamagePropertyGenerationRule : ItemPropertyGenerationRule
     [SerializeField]
     private IntLevelValueRange MaxDamage = new();
 
-    public override void GenerateProperty(GameObject item, int level)
+    public override ItemProperty GenerateProperty(int level)
     {
-        var damageProperty = item.AddComponent<DamageItemProperty>();
+        var damageProperty = ScriptableObject.CreateInstance<DamageItemProperty>();
         damageProperty.Type = type;
         damageProperty.MinValue = MinDamage.GetMin(level);
         damageProperty.MaxValue = MaxDamage.GetMax(level);
+        return damageProperty;
     }
 }

@@ -6,9 +6,10 @@ public class HealItemPropertyGenerationRule : ItemPropertyGenerationRule
     [SerializeField]
     private float healAmouth = 0.25f;
 
-    public override void GenerateProperty(GameObject item, int level)
+    public override ItemProperty GenerateProperty(int level)
     {
-        var property = item.AddComponent<HealItemProperty>();
+        var property = ScriptableObject.CreateInstance<HealItemProperty>();
         property.HealAmouth = healAmouth;
+        return property;
     }
 }

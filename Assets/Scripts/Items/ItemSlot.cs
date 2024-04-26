@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -72,7 +73,7 @@ public class ItemSlot : ScriptableObject
             {
                 return null;
             }
-            var quantityProperty = Item.GetComponent<ItemQuantity>();
+            var quantityProperty = Item.GetProperty<ItemQuantity>();
             if (quantityProperty == null)
             {
                 return null;

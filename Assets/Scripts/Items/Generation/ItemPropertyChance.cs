@@ -13,11 +13,12 @@ public class ItemPropertyChance
     public float Chance { get => chance; }
     public ItemPropertyGenerationRule Rule { get => rule; }
 
-    public void GenerateProperty(GameObject item, int level)
+    public ItemProperty GenerateProperty(int level)
     {
         if (UnityEngine.Random.Range(0, 1) <= chance) 
         {
-            rule.GenerateProperty(item, level);
+            return rule.GenerateProperty(level);
         }
+        return null;
     }
 }

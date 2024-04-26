@@ -12,7 +12,9 @@ public class MissleWeaponProperty : WeaponProperty
     private GameObject attacker;
     private Vector2 targetPoint;
 
-    public override void Attack(GameObject attacker, Vector2 targetPoint)
+    protected override string descriptionKey => null;
+
+    public override void Attack(GameObject attacker, Vector2 targetPoint, Item weaponItem)
     {
         this.attacker = attacker;
         this.targetPoint = targetPoint;
@@ -33,7 +35,7 @@ public class MissleWeaponProperty : WeaponProperty
 
         var attackDirection = new Vector3(Mathf.Cos(attackAngleRads), Mathf.Sin(attackAngleRads));
 
-        var newProjectile = Instantiate(ProjectilePrefab);
+        var newProjectile = GameObject.Instantiate(ProjectilePrefab);
         newProjectile.transform.SetPositionAndRotation(attackerPosition, Quaternion.Euler(0, 0, attackAngle));
 
         var projectileRigidBody = newProjectile.GetComponent<Rigidbody2D>();
@@ -43,6 +45,7 @@ public class MissleWeaponProperty : WeaponProperty
 
         var projectileComponent = newProjectile.GetComponent<Projectile>();
         projectileComponent.MissleWeaponProperty = this;
+        projectileComponent.WeaponItem = weaponItem;
         projectileComponent.Attacker = attacker;
         projectileComponent.TargetPoint = targetPoint;
     }
