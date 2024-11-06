@@ -1,15 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using NUnit.Framework.Internal;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ItemGenerationRuleConverter : JsonConverter<ItemGenerationRule>
 {
@@ -48,8 +39,7 @@ public class ItemGenerationRuleConverter : JsonConverter<ItemGenerationRule>
             writer.WriteNull();
             return;
         }
-
-        var path = AssetDatabase.GetAssetPath(value).Replace("Assets/Resources/", "").Replace(".asset", "");
+        var path = value.name; //AssetDatabase.GetAssetPath(value).Replace("Assets/Resources/", "").Replace(".asset", "");
         writer.WriteValue(path);
     }
 }

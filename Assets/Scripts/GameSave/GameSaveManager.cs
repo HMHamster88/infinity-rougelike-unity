@@ -19,6 +19,7 @@ public class GameSaveManager : MonoBehaviour
     public void Save(SaveGame saveGame)
     {
         var fullPath = Path.Combine(Application.persistentDataPath, SavesDir, saveGame.Name + Extension);
+        Debug.Log("Save game to: " + fullPath);
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
         using (var stream = new FileStream(fullPath, FileMode.Create))
         {

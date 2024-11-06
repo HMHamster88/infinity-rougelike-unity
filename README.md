@@ -3,6 +3,13 @@ Infinity Roguelike Game
 
 # Controls
 Movement - WASD
-Attack - Left Mouse Button
+
+Attack - Right Mouse Button
+
 Interact with objects (Doors, Chests) - Left Mouse Button
+
 Inventory - E
+
+Map - M
+
+Close Window/Menu - Escape
