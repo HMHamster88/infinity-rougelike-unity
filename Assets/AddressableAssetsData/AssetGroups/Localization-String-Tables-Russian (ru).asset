@@ -15,6 +15,18 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Russian (ru)
   m_GUID: 791ba8adb36d9184294dc6773cc697e5
   m_SerializeEntries:
+  - m_GUID: 500c4f73bfd16cc41909737e1d64d004
+    m_Address: Enemies_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 668697b714f56f348b6da98d5556b3d6
+    m_Address: Objects_ru
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: be5108d1c6b8759488f79bd53cd2e21e
     m_Address: Common_ru
     m_ReadOnly: 1
@@ -33,18 +45,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ru
     - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 500c4f73bfd16cc41909737e1d64d004
-    m_Address: Enemies_ru
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ru
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 668697b714f56f348b6da98d5556b3d6
-    m_Address: Objects_ru
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ru
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 045ea32eccff6fc48ac512820d5f9f2c, type: 2}

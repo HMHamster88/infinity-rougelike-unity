@@ -67,6 +67,7 @@ public class InputManager : MonoBehaviour
     public void OnAttack(InputValue value)
     {
         attacking = value.isPressed;
+        Debug.Log("Attacking = " + attacking);
     }
 
     public void OnEscape()

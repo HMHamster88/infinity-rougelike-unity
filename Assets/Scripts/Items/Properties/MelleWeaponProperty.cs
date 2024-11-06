@@ -91,13 +91,14 @@ public class MelleWeaponProperty : WeaponProperty
         return attacker.transform.Find("MeleeWeaponAttack");
     }
 
-    private void Update()
+    public override void Update()
     {
         if (attacker == null)
         {
             return;
         }
         checkColliders();
+        Debug.Log("Update melle");
         if (currentAttackTime > AttackTime)
         {
             currentAttackTime = 0;

@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class WeaponProperty : ItemProperty
@@ -14,5 +15,9 @@ public abstract class WeaponProperty : ItemProperty
     {
         var generationRule = (WeaponPropertyGenerationRule) GenerationRule;
         AttackSounds = generationRule.AttackSounds;
+    }
+
+    public virtual void Update()
+    {
     }
 }

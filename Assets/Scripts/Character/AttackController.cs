@@ -15,6 +15,10 @@ public class AttackController : MonoBehaviour
 
     void Update()
     {
+        if (currentWeapon != null)
+        {
+            currentWeapon.GetProperty<WeaponProperty>().Update();
+        }
         cooldownTime -= Time.deltaTime;
         if (cooldownTime < 0)
         {

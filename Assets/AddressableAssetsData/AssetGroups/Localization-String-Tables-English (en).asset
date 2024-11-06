@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-English (en)
   m_GUID: b99dd151f8ec8874781a83be1d536f7b
   m_SerializeEntries:
-  - m_GUID: cffeec17c1feb464698246e082c1a947
-    m_Address: Common_en
+  - m_GUID: 20c35260b359767499ec1016c6ef72df
+    m_Address: Enemies_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
@@ -34,14 +34,14 @@ MonoBehaviour:
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 20c35260b359767499ec1016c6ef72df
-    m_Address: Enemies_en
+  - m_GUID: aad36ef8ae9b15f4185ef94d21f46e25
+    m_Address: Objects_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aad36ef8ae9b15f4185ef94d21f46e25
-    m_Address: Objects_en
+  - m_GUID: cffeec17c1feb464698246e082c1a947
+    m_Address: Common_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
