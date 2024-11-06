@@ -79,7 +79,7 @@ public class Character: InjectComponentBehaviour
         }
         var delta = movePosition - rigidbodyComponent.position;
         var direction = delta.Value.normalized;
-        rigidbodyComponent.velocity = direction * MoveSpeed;
+        rigidbodyComponent.linearVelocity = direction * MoveSpeed;
         moveTime -= Time.fixedDeltaTime;
     }
 }

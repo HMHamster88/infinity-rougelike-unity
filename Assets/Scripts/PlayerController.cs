@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetWalkDirection(Vector2 direction)
     {
-        playerRigidBody.velocity = direction * speedMultiplier;
+        playerRigidBody.linearVelocity = direction * speedMultiplier;
     }
 
     void Awake()

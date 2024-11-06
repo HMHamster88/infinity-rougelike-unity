@@ -39,7 +39,7 @@ public class MissleWeaponProperty : WeaponProperty
         newProjectile.transform.SetPositionAndRotation(attackerPosition, Quaternion.Euler(0, 0, attackAngle));
 
         var projectileRigidBody = newProjectile.GetComponent<Rigidbody2D>();
-        projectileRigidBody.velocity = attackDirection * ProjectileStartSpeed;
+        projectileRigidBody.linearVelocity = attackDirection * ProjectileStartSpeed;
 
         Physics2D.IgnoreCollision(attacker.GetComponent<Collider2D>(), newProjectile.GetComponent<Collider2D>());
 
