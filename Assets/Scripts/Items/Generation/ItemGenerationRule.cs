@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -8,6 +9,8 @@ using UnityEngine.Localization;
 [CreateAssetMenu(fileName = "ItemGenerationRule", menuName = "Scriptable Objects/Item Generation Rule")]
 public class ItemGenerationRule : ScriptableObject
 {
+    [SerializeField]
+    public string ID = Guid.NewGuid().ToString();
     [SerializeField]
     private LocalizedString itemName;
     [SerializeField]

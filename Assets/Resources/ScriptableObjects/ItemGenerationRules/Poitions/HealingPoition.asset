@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89500909a9154b54b85791f18274eeee, type: 3}
   m_Name: HealingPoition
   m_EditorClassIdentifier: 
+  ID: healing_poition
   itemName:
     m_TableReference:
       m_TableCollectionName: GUID:abefe01c2b23a3142939ca193dccd5bc
@@ -36,6 +37,7 @@ MonoBehaviour:
     - rid: 1578213085755998414
       type: {class: ItemQuantityGenerationRule, ns: , asm: Assembly-CSharp}
       data:
+        ID: 36a233d1-ac9a-4c64-8a51-b528cc016de0
         quantity:
           min:
             baseValue: 1
@@ -49,4 +51,5 @@ MonoBehaviour:
     - rid: 1578213085755998626
       type: {class: HealItemPropertyGenerationRule, ns: , asm: Assembly-CSharp}
       data:
+        ID: 77c0e022-6aaa-4694-ae3a-3f6d92ca6b94
         healAmouth: 0.25

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89500909a9154b54b85791f18274eeee, type: 3}
   m_Name: Coins
   m_EditorClassIdentifier: 
+  ID: coins
   itemName:
     m_TableReference:
       m_TableCollectionName: GUID:abefe01c2b23a3142939ca193dccd5bc
@@ -33,6 +34,7 @@ MonoBehaviour:
     - rid: 1578213085755998415
       type: {class: ItemQuantityGenerationRule, ns: , asm: Assembly-CSharp}
       data:
+        ID: f83557fa-c492-468f-ab97-b4328b242edc
         quantity:
           min:
             baseValue: 1

@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89500909a9154b54b85791f18274eeee, type: 3}
-  m_Name: Sword
+  m_Name: ShortBow
   m_EditorClassIdentifier: 
+  ID: short_bow
   itemName:
     m_TableReference:
       m_TableCollectionName: GUID:abefe01c2b23a3142939ca193dccd5bc
     m_TableEntryReference:
-      m_KeyId: 18670026752
+      m_KeyId: 6899922000543744
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  sprite: {fileID: 8033092973025764044, guid: 563a28e4ed5605c4da39dbe3fee5782f, type: 3}
+  sprite: {fileID: 1258252838, guid: 563a28e4ed5605c4da39dbe3fee5782f, type: 3}
   slotType: 1
   itemProperties:
   - chance: 1
@@ -29,46 +30,45 @@ MonoBehaviour:
       rid: 1578213063821886118
   - chance: 1
     rule:
-      rid: 7220094980663017544
+      rid: 7220095073331183688
   references:
     version: 2
     RefIds:
     - rid: 1578213063821886118
       type: {class: ItemDamagePropertyGenerationRule, ns: , asm: Assembly-CSharp}
       data:
-        ID: 2771300c-da0b-4dd6-8cff-71bb8854a427
+        ID: 3326f2c9-3291-49e7-a05c-94a662f0aba1
         type: 0
         MinDamage:
           min:
             baseValue: 1
-            linearFactor: 5
+            linearFactor: 1
             cubicFactor: 0
           max:
             baseValue: 1
-            linearFactor: 5
+            linearFactor: 1
             cubicFactor: 0
         MaxDamage:
           min:
-            baseValue: 5
-            linearFactor: 10
+            baseValue: 3
+            linearFactor: 5
             cubicFactor: 0
           max:
-            baseValue: 5
-            linearFactor: 10
+            baseValue: 3
+            linearFactor: 5
             cubicFactor: 0
-    - rid: 7220094980663017544
-      type: {class: MelleWeaponPropertyGenerationRule, ns: , asm: Assembly-CSharp}
+    - rid: 7220095073331183688
+      type: {class: MissleWeaponPropertyGenerationRule, ns: , asm: Assembly-CSharp}
       data:
-        ID: 70c0101b-e8c4-464c-8c35-bc6b2a5ca05a
+        ID: dced70ff-3b4a-474c-ae7f-5d624d917e7f
         attacksPerSecond: 2
         AttackSounds:
-        - {fileID: 8300000, guid: 1660e0f31d9036e4d91f52d3fdc3e1bd, type: 3}
-        - {fileID: 8300000, guid: 6b24f43f8042f7546a8ca89a59df5dc3, type: 3}
-        - {fileID: 8300000, guid: a59c26785b2a0c34aafc9938052a46e2, type: 3}
-        - {fileID: 8300000, guid: f8edc2fa568743b48a2fd6b99c2941e5, type: 3}
-        - {fileID: 8300000, guid: a48e48a71b913b948961d20444d68ac2, type: 3}
-        - {fileID: 8300000, guid: e916812351992a24ab9e9eb875fa9f5c, type: 3}
-        Distance: 0.5
-        MaxDistance: 1
-        AttackAngleRange: 90
-        AttackTime: 0.2
+        - {fileID: 8300000, guid: bdb56d4d53d27b743ab50eda6725c7a5, type: 3}
+        - {fileID: 8300000, guid: 850841438f0a1fe4bacd08f9bc8770da, type: 3}
+        - {fileID: 8300000, guid: 0d8cec1416611de4db16c89549f2dfa7, type: 3}
+        - {fileID: 8300000, guid: b6fa5420424d4324699434b177f1acac, type: 3}
+        - {fileID: 8300000, guid: 1895442a5cbf45949b3bea533f21a2d3, type: 3}
+        Distance: 10
+        ProjectilePrefab: {fileID: 6101843159051497183, guid: 0f9c3e154fb94f34484dd7123457002a, type: 3}
+        ProjectileStartSpeed: 10
+        AttackAngleScatter: 5

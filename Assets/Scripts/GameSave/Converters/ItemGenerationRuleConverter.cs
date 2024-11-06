@@ -1,9 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemGenerationRuleConverter : JsonConverter<ItemGenerationRule>
 {
+    private const string allRulesPath = "ScriptableObjects/ItemGenerationRules";
+    private Dictionary<string, ItemGenerationRule> allRules;
     public override ItemGenerationRule ReadJson(JsonReader reader, Type objectType, ItemGenerationRule existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
         if (reader.TokenType == JsonToken.Null)
@@ -20,7 +24,16 @@ public class ItemGenerationRuleConverter : JsonConverter<ItemGenerationRule>
                 {
                     return null;
                 }
-                return Resources.Load<ItemGenerationRule>(value);
+                if (allRules == null)
+                {
+                    allRules = Resources.LoadAll<ItemGenerationRule>(allRulesPath).ToDictionary(rule => rule.ID, rule => rule);
+                }
+                var rule = allRules[value];
+                if (rule == null)
+                {
+                    throw new Exception("No ItemGenerationRule with id = " + value);
+                }
+                return rule;
             }
 
         }
@@ -39,8 +52,7 @@ public class ItemGenerationRuleConverter : JsonConverter<ItemGenerationRule>
             writer.WriteNull();
             return;
         }
-        var path = value.name; //AssetDatabase.GetAssetPath(value).Replace("Assets/Resources/", "").Replace(".asset", "");
-        writer.WriteValue(path);
+        writer.WriteValue(value.ID);
     }
 }
 
