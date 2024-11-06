@@ -11,7 +11,7 @@
         <engine:VisualElement name="Header" style="flex-grow: 0; flex-direction: row; justify-content: space-between; align-self: auto; align-items: flex-start;">
             <engine:Instance template="ObjectDescription" enabled="true" name="ObjectDescription" style="align-self: flex-start; position: absolute;">
                 <Bindings>
-                    <UnityEngine.UIElements.DataBinding property="style.visibility" data-source-path="ShowAtCursorObjectBar" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                    <engine:DataBinding property="style.visibility" data-source-path="ShowAtCursorObjectBar" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
                 </Bindings>
             </engine:Instance>
             <engine:VisualElement name="Spacer" style="flex-grow: 1;" />
@@ -34,7 +34,7 @@
             <engine:VisualElement enabled="true" name="LeftPanel" style="width: 50%;">
                 <engine:Instance template="ContainerView" name="ContainerView" enabled="true" style="flex-grow: 1; display: none;">
                     <Bindings>
-                        <UnityEngine.UIElements.DataBinding property="style.display" data-source-path="ContainerWindowVisibility.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+                        <engine:DataBinding property="style.display" data-source-path="ContainerWindowVisibility.Value" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
                     </Bindings>
                 </engine:Instance>
             </engine:VisualElement>
@@ -61,11 +61,16 @@
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="Footer" style="flex-grow: 0;" />
+        <engine:Label name="VersionLabel" parse-escape-sequences="true" style="position: absolute; bottom: 0; left: 0; color: rgb(134, 134, 134);">
+            <Bindings>
+                <engine:DataBinding property="text" data-source-path="AppVersion" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+            </Bindings>
+        </engine:Label>
     </engine:VisualElement>
     <engine:Instance template="ItemView" name="DragAndDropItem" style="position: absolute; display: none;" />
     <engine:Instance template="ItemDescriptionView" name="ItemDescriptionView" enabled="true" style="position: absolute; display: none;">
         <Bindings>
-            <UnityEngine.UIElements.DataBinding property="style.display" data-source-path="ItemDescriptionViewVisibility" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
+            <engine:DataBinding property="style.display" data-source-path="ItemDescriptionViewVisibility" data-source-type="UIController, Assembly-CSharp" binding-mode="ToTarget" />
         </Bindings>
     </engine:Instance>
     <engine:VisualElement name="EscapeMenuContainer" style="flex-grow: 1; position: absolute; right: 0; bottom: 0; left: 0; top: 0; align-items: center; align-content: center; flex-direction: column; justify-content: center; background-color: rgba(0, 0, 0, 0.4); display: none;">

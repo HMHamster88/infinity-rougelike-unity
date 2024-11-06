@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class SaveGame
 {
+    public string Version;
     public string Name = "SaveGame";
     public List<ItemSlot> PlayerItems;
     public EquipmentSaveData PlayerEquipment;

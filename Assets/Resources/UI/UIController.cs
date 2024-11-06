@@ -16,6 +16,15 @@ public class UIController : MonoBehaviour
     public Equipment playerEquipment;
     public Minimap minimap;
 
+    [CreateProperty]
+    public string AppVersion
+    {
+        get
+        {
+            return Application.version;
+        }
+    }
+
     public GameObject atCursorObject;
     public GameObject AtCursorObject
     {

@@ -18,6 +18,7 @@ public class GameSaveManager : MonoBehaviour
 
     public void Save(SaveGame saveGame)
     {
+
         var fullPath = Path.Combine(Application.persistentDataPath, SavesDir, saveGame.Name + Extension);
         Debug.Log("Save game to: " + fullPath);
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
@@ -49,7 +50,8 @@ public class GameSaveManager : MonoBehaviour
         var saveGame = new SaveGame
         {
             PlayerItems = player.GetComponent<ItemsBag>().itemsSlots,
-            PlayerEquipment = EquipmentSaveData.FromEquipment(player.GetComponent<Equipment>())
+            PlayerEquipment = EquipmentSaveData.FromEquipment(player.GetComponent<Equipment>()),
+            Version = Application.version
         };
         Save(saveGame);
     }
